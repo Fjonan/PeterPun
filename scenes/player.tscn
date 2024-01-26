@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=24 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
+[ext_resource type="PackedScene" uid="uid://dhom8qei7ccai" path="res://scenes/bullet.tscn" id="2_lp83w"]
 [ext_resource type="Texture2D" uid="uid://hdexj3njx1d0" path="res://assets/survivalgame-player-green.png" id="2_wuvb2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_837cb"]
@@ -183,14 +184,16 @@ height = 67.3267
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_5x7pt")
+Bullet = ExtResource("2_lp83w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.48, 1.48)
 sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"w_walk"
-frame_progress = 0.801192
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-5, 7)

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 200
 @export var friction = 0.5
 @export var acceleration = 0.25
+@export var Bullet : PackedScene
 
 var player_state = "idle"
 
@@ -18,6 +19,9 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	play_animation(direction)
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 	
 func play_animation(dir):
 	if player_state == "idle":
@@ -44,6 +48,13 @@ func get_input():
 	if Input.is_action_pressed('ui_up'):
 		input.y -= 1
 	return input
+	
+func shoot():
+	var direction = ($Muzzle.global_position - global_position).normalized()
+	var bullet = Bullet.instantiate()
+	owner.add_child(bullet)
+	bullet.transform = transform
+		
 			
 func player():
 	pass

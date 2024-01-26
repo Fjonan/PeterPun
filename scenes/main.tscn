@@ -1,10 +1,159 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm6vo1o4gyjk1"]
+[gd_scene load_steps=9 format=3 uid="uid://bvm0r7738la6y"]
 
-[ext_resource type="Script" path="res://scripts/world.gd" id="1_a2spw"]
+[ext_resource type="Script" path="res://assets/Main.gd" id="1_een7u"]
 [ext_resource type="PackedScene" uid="uid://cmh3ieveab3vu" path="res://scenes/player.tscn" id="2_ac05l"]
+[ext_resource type="Texture2D" uid="uid://c4amwbfo6h138" path="res://assets/spaceshooter/Backgrounds/blue.png" id="2_t2fkp"]
+[ext_resource type="FontFile" uid="uid://blegpfvmy32ik" path="res://assets/SpaceMono-Regular.ttf" id="4_84nw7"]
 
-[node name="root" type="Node2D"]
-script = ExtResource("1_a2spw")
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(45.8038, 666.384)
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("4_84nw7")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("4_84nw7")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("4_84nw7")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_een7u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -40.0
+offset_top = -34.0
+offset_right = 1057.0
+offset_bottom = 629.0
+texture = ExtResource("2_t2fkp")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="LoseArea" type="Area2D" parent="."]
+position = Vector2(0, 5.55865)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoseArea"]
+position = Vector2(-52.8519, 291.747)
+shape = SubResource("1")
+
+[node name="SpawnContainer" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(1092.99, 84.4438)
+
+[node name="Position2D2" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(1089.8, 181.634)
+
+[node name="Position2D3" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(1091.4, 272.451)
+
+[node name="Position2D4" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(1092.99, 372.827)
+
+[node name="Position2D5" type="Marker2D" parent="SpawnContainer"]
+position = Vector2(1094.58, 473.204)
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="DifficultyTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_ac05l")]
-position = Vector2(539, 331)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/GameOverScreen"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOverScreen/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("2")
+text = "YOU LOST"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("3")
+text = "RESTART"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TopRow2" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TopRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/TopRow2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="EnemiesKilledLabel4" type="Label" parent="CanvasLayer/VBoxContainer/TopRow2/TopRow"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("4")
+text = "Killed:"
+
+[node name="EnemiesKilledValue" type="Label" parent="CanvasLayer/VBoxContainer/TopRow2/TopRow"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("4")
+text = "0"
+
+[node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/BottomRow"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DifficultyLabel" type="Label" parent="CanvasLayer/VBoxContainer/BottomRow/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("4")
+text = "  Difficulty:"
+
+[node name="DifficultyValue" type="Label" parent="CanvasLayer/VBoxContainer/BottomRow/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("4")
+text = "0"
+
+[connection signal="body_entered" from="LoseArea" to="." method="_on_LoseArea_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
+[connection signal="pressed" from="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]

@@ -1,28 +1,50 @@
 extends CharacterBody2D
 
+@export var speed = 200
+@export var friction = 0.5
+@export var acceleration = 0.25
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var player_state = "idle"
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+	var direction = get_input()
+	
+	if direction.length() > 0:
+		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
+		player_state = "moving"
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+		player_state = "idle"
+		velocity = velocity.lerp(Vector2.ZERO, friction)
+		
 	move_and_slide()
+	play_animation(direction)
+	
+func play_animation(dir):
+	if player_state == "idle":
+		$AnimatedSprite2D.play("idle")
+		
+	if player_state == "moving":
+		if dir.x == 1:
+			$AnimatedSprite2D.play("e_walk")
+		if dir.x == -1:
+			$AnimatedSprite2D.play("w_walk")
+		if dir.y == 1:
+			$AnimatedSprite2D.play("s_walk")
+		if dir.y == -1:
+			$AnimatedSprite2D.play("n_walk")
+
+func get_input():
+	var input = Vector2()
+	if Input.is_action_pressed('ui_right'):
+		input.x += 1
+	if Input.is_action_pressed('ui_left'):
+		input.x -= 1
+	if Input.is_action_pressed('ui_down'):
+		input.y += 1
+	if Input.is_action_pressed('ui_up'):
+		input.y -= 1
+	return input
+			
+func player():
+	pass
+

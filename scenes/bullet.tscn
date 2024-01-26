@@ -11,8 +11,8 @@ height = 24.0
 script = ExtResource("1_ora50")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(0.0319824, 0.0226237)
+position = Vector2(1, -5.29396e-23)
+scale = Vector2(0.0325928, 0.0230306)
 texture = ExtResource("2_1cjfk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

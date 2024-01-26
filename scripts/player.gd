@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var Bullet : PackedScene
 
 var player_state = "idle"
+var muzzle_radius = 40
 
 func _physics_process(delta):
 	var direction = get_input()
@@ -17,8 +18,9 @@ func _physics_process(delta):
 		player_state = "idle"
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 		
-	move_and_slide()
+
 	play_animation(direction)
+	move_and_slide()
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -29,13 +31,15 @@ func play_animation(dir):
 		
 	if player_state == "moving":
 		if dir.x == 1:
-			$AnimatedSprite2D.play("e_walk")
+			print('right')
+			$AnimatedSprite2D.play("right_walk")
 		if dir.x == -1:
-			$AnimatedSprite2D.play("w_walk")
+			print('left')
+			$AnimatedSprite2D.play("left_walk")
 		if dir.y == 1:
-			$AnimatedSprite2D.play("s_walk")
+			$AnimatedSprite2D.play("idle")
 		if dir.y == -1:
-			$AnimatedSprite2D.play("n_walk")
+			$AnimatedSprite2D.play("idle")
 
 func get_input():
 	var input = Vector2()
@@ -50,12 +54,17 @@ func get_input():
 	return input
 	
 func shoot():
-	var direction = ($Muzzle.global_position - global_position).normalized()
-	var bullet = Bullet.instantiate()
-	owner.add_child(bullet)
-	bullet.transform = transform
+	var b = Bullet.instantiate()
+	owner.add_child(b)
+	b.transform = $Muzzle.global_transform
 		
-			
+	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
+	b.set_direction(position, direction)
+
+func _process(delta):
+	# $AimNode.position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
+	$Muzzle.position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
+
 func player():
 	pass
-

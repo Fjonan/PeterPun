@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bvm0r7738la6y"]
 
-[ext_resource type="Script" path="res://assets/Main.gd" id="1_een7u"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_een7u"]
 [ext_resource type="PackedScene" uid="uid://cmh3ieveab3vu" path="res://scenes/player.tscn" id="2_ac05l"]
 [ext_resource type="Texture2D" uid="uid://c4amwbfo6h138" path="res://assets/spaceshooter/Backgrounds/blue.png" id="2_t2fkp"]
 [ext_resource type="FontFile" uid="uid://blegpfvmy32ik" path="res://assets/SpaceMono-Regular.ttf" id="4_84nw7"]

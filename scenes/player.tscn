@@ -1,17 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=12 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
-[ext_resource type="PackedScene" uid="uid://dhom8qei7ccai" path="res://scenes/bullet.tscn" id="2_lp83w"]
-[ext_resource type="Texture2D" uid="uid://b8e8vd5enml8" path="res://assets/Animations/Character/south/01.png" id="3_nvmgc"]
+[ext_resource type="PackedScene" path="res://scenes/bullet.tscn" id="2_lp83w"]
 [ext_resource type="Texture2D" uid="uid://dmahv43j500y" path="res://assets/Animations/Character/idle/01.png" id="7_cnmlp"]
 [ext_resource type="Texture2D" uid="uid://xrs6kyi2jtwi" path="res://assets/Animations/Character/idle/02.png" id="8_eildw"]
-[ext_resource type="Texture2D" uid="uid://b8e8vd5enml8" path="res://assets/Animations/Character/east/01.png" id="9_7gnnv"]
-[ext_resource type="Texture2D" uid="uid://cbco2yl2w72fw" path="res://assets/Animations/Character/east/02.png" id="10_ko5sd"]
-[ext_resource type="Texture2D" uid="uid://cbco2yl2w72fw" path="res://assets/Animations/Character/south/02.png" id="10_pl3a6"]
-[ext_resource type="Texture2D" uid="uid://cbyb2kismyp2t" path="res://assets/Animations/Character/east/03.png" id="11_is826"]
-[ext_resource type="Texture2D" uid="uid://cbyb2kismyp2t" path="res://assets/Animations/Character/south/03.png" id="11_wvxa5"]
-[ext_resource type="Texture2D" uid="uid://bq2wklq15ttu" path="res://assets/Animations/Character/south/04.png" id="12_g4jnk"]
-[ext_resource type="Texture2D" uid="uid://bq2wklq15ttu" path="res://assets/Animations/Character/east/04.png" id="12_kvjjm"]
+[ext_resource type="Texture2D" uid="uid://b8e8vd5enml8" path="res://assets/Animations/Character/south/01.png" id="9_7gnnv"]
+[ext_resource type="Texture2D" uid="uid://cbco2yl2w72fw" path="res://assets/Animations/Character/south/02.png" id="10_ko5sd"]
+[ext_resource type="Texture2D" uid="uid://cbyb2kismyp2t" path="res://assets/Animations/Character/south/03.png" id="11_is826"]
+[ext_resource type="Texture2D" uid="uid://bq2wklq15ttu" path="res://assets/Animations/Character/south/04.png" id="12_kvjjm"]
 [ext_resource type="Texture2D" uid="uid://c54svuisx5jr5" path="res://assets/dot.png" id="13_xykai"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cid78"]
@@ -29,16 +25,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_nvmgc")
+"texture": ExtResource("9_7gnnv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_pl3a6")
+"texture": ExtResource("10_ko5sd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_wvxa5")
+"texture": ExtResource("11_is826")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_g4jnk")
+"texture": ExtResource("12_kvjjm")
 }],
 "loop": true,
 "name": &"left_walk",
@@ -82,7 +78,6 @@ shape = SubResource("CapsuleShape2D_hp6tl")
 position = Vector2(-5, 7)
 
 [node name="AimNode" type="Node2D" parent="."]
-visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="AimNode"]
 position = Vector2(2.86102e-06, 0)

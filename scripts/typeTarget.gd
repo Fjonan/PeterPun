@@ -1,5 +1,4 @@
-extends CharacterBody2D
-
+extends Node
 
 @export var blue = Color("#4682b4")
 @export var green = Color("#639765")
@@ -14,24 +13,11 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	init_prompt()
-	GlobalSignals.connect("difficulty_increased", Callable(self, "handle_difficulty_increased"))
-
-
-func _physics_process(delta: float) -> void:
-	global_position.x -= speed
 
 
 func init_prompt() -> void:
 	prompt_text = PromptList.get_prompt()
-	prompt.parse_bbcode(set_center_tags(prompt_text))
-
-func set_difficulty(difficulty: int):
-	handle_difficulty_increased(difficulty)
-
-
-func handle_difficulty_increased(new_difficulty: int):
-	var new_speed = speed + (0.125 * new_difficulty)
-	speed = clamp(new_speed, speed, 3)
+	prompt.parse_bbcode(prompt_text)
 
 
 func get_prompt() -> String:
@@ -46,11 +32,8 @@ func set_next_character(next_character_index: int):
 	if next_character_index != prompt_text.length():
 		red_text = get_bbcode_color_tag(red) + prompt_text.substr(next_character_index + 1, prompt_text.length() - next_character_index + 1) + get_bbcode_end_color_tag()
 
-	prompt.parse_bbcode(set_center_tags(blue_text + green_text + red_text))
+	prompt.parse_bbcode(blue_text + green_text + red_text)
 
-
-func set_center_tags(string_to_center: String):
-	return "[center]" + string_to_center + "[/center]"
 
 
 func get_bbcode_color_tag(color: Color) -> String:

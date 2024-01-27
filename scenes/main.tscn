@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvm0r7738la6y"]
+[gd_scene load_steps=12 format=3 uid="uid://bvm0r7738la6y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_een7u"]
 [ext_resource type="Texture2D" uid="uid://dje0cr2g2ibs8" path="res://assets/spaceshooter/Backgrounds/purple.png" id="2_6je35"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="5_bk7mn"]
 [ext_resource type="FontFile" uid="uid://djm43ruqxrtg4" path="res://assets/Pixeled.ttf" id="5_jnemn"]
 [ext_resource type="PackedScene" path="res://scenes/bullet.tscn" id="6_bimjx"]
+[ext_resource type="Script" path="res://scripts/typeTarget.gd" id="6_qlddw"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(45.8038, 666.384)
@@ -106,6 +107,8 @@ text = "RESTART"
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="TopRow2" type="CenterContainer" parent="CanvasLayer/VBoxContainer"]
@@ -128,16 +131,22 @@ text = "0"
 [node name="PunRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
+script = ExtResource("6_qlddw")
 
 [node name="PunRow1Label" type="Label" parent="CanvasLayer/VBoxContainer/PunRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_jnemn")
 text = "Pun 1:"
 
-[node name="PunRow1Value" type="Label" parent="CanvasLayer/VBoxContainer/PunRow"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/PunRow"]
+clip_contents = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_jnemn")
-text = "0"
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("5_jnemn")
+bbcode_enabled = true
+text = "0asdf"
+fit_content = true
+scroll_active = false
 
 [node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2

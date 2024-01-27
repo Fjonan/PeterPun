@@ -9,6 +9,8 @@ var Enemy = preload("res://scenes/enemy.tscn")
 @onready var bullet_manager = $BulletManager
 @onready var player = $Player
 
+@onready var pun1 = $CanvasLayer/VBoxContainer/PunRow
+
 @onready var difficulty_value = $CanvasLayer/VBoxContainer/BottomRow/HBoxContainer/DifficultyValue
 @onready var killed_value = $CanvasLayer/VBoxContainer/TopRow2/TopRow/EnemiesKilledValue
 @onready var game_over_screen = $CanvasLayer/GameOverScreen
@@ -23,18 +25,48 @@ var enemies_killed: int = 0
 
 func _ready() -> void:
 	start_game()
+	pun1.init_prompt()
 
 
 func find_new_active_enemy(typed_character: String):
+	if found_new_active_enemy(typed_character, pun1):
+		return
+
 	for enemy in enemy_container.get_children():
-		var prompt = enemy.get_prompt()
-		var next_character = prompt.substr(0, 1)
-		if next_character == typed_character:
-			print("found new enemy that starts with %s" % next_character)
-			active_enemy = enemy
-			current_letter_index = 1
-			active_enemy.set_next_character(current_letter_index)
+		if found_new_active_enemy(typed_character, enemy):
 			return
+
+
+func found_new_active_enemy(typed_character: String, enemy) -> bool:
+	var prompt = enemy.get_prompt()
+	var next_character = prompt.substr(0, 1)
+	if next_character == typed_character:
+		print("found new enemy that starts with %s" % next_character)
+		active_enemy = enemy
+		current_letter_index = 1
+		active_enemy.set_next_character(current_letter_index)
+		return true
+	else:
+		return false
+
+
+func player_typed(key_typed: String):
+	var prompt = active_enemy.get_prompt()
+	var next_character = prompt.substr(current_letter_index, 1)
+	if key_typed == next_character:
+		print("successfully typed %s" % key_typed)
+		current_letter_index += 1
+		active_enemy.set_next_character(current_letter_index)
+		if current_letter_index == prompt.length():
+			print("done")
+			current_letter_index = -1
+			active_enemy.init_prompt()
+			active_enemy = null
+			enemies_killed += 1
+			killed_value.text = str(enemies_killed)
+	else:
+		print("incorrectly typed %s instead of %s" % [key_typed, next_character])
+		
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -45,21 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if active_enemy == null:
 			find_new_active_enemy(key_typed)
 		else:
-			var prompt = active_enemy.get_prompt()
-			var next_character = prompt.substr(current_letter_index, 1)
-			if key_typed == next_character:
-				print("successfully typed %s" % key_typed)
-				current_letter_index += 1
-				active_enemy.set_next_character(current_letter_index)
-				if current_letter_index == prompt.length():
-					print("done")
-					current_letter_index = -1
-					active_enemy.queue_free()
-					active_enemy = null
-					enemies_killed += 1
-					killed_value.text = str(enemies_killed)
-			else:
-				print("incorrectly typed %s instead of %s" % [key_typed, next_character])
+			player_typed(key_typed)
 
 
 func _on_SpawnTimer_timeout() -> void:

@@ -182,11 +182,12 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp6tl"]
-radius = 45.5446
-height = 114.851
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t3tj"]
+size = Vector2(63.3663, 99.0099)
 
 [node name="Player" type="Node2D"]
+z_index = 2
+z_as_relative = false
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 position = Vector2(1.4013e-45, 1.4013e-45)
@@ -223,9 +224,9 @@ sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 1)
+position = Vector2(-1, 1)
 scale = Vector2(0.505, 0.505)
-shape = SubResource("CapsuleShape2D_hp6tl")
+shape = SubResource("RectangleShape2D_5t3tj")
 
 [node name="Weapon" parent="CharacterBody2D" instance=ExtResource("5_j5fpl")]
 visible = false

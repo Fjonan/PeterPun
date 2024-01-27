@@ -45,6 +45,8 @@ position = Vector2(-1845, -1211)
 
 [node name="EnemyContainer" type="Node2D" parent="."]
 
+[node name="PickupContainer" type="Node" parent="."]
+
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="DifficultyTimer" type="Timer" parent="."]

@@ -2,7 +2,7 @@ extends Node
 
 
 signal difficulty_increased(new_difficulty)
-signal bullet_fired(bullet, transform, postion, direction)
+signal bullet_fired(origin, direction, damage)
 signal shoot()
 signal hit()
 signal bullet_impacted(postion, direction)

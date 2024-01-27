@@ -15,13 +15,12 @@ func _physics_process(delta: float):
 		var velocity = direction * speed
 		global_position += velocity
 	
-func spawn_Bullet(origin: Vector2, direction: Vector2, damage: int):
+func spawn_Bullet(origin: Transform2D, direction: Vector2, damage: int):
+	transform = origin
 	self.damage = damage
-	
-	if (direction.x == 0 && direction.y == 0): #idle
-		direction = Vector2(-1,0)
-	self.direction = (origin - direction).normalized()
+	self.direction = direction
 	rotation = direction.angle()
+	
 
 func _on_Bullet_body_entered(body: Node) -> void:
 	if body.has_method("handle_hit"):

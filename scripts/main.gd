@@ -26,7 +26,6 @@ func _ready() -> void:
 	start_game()
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 
-
 func find_new_prompt(typed_character: String, puns) -> bool:
 	var prompt = puns.get_prompt()
 	var next_character = prompt.substr(0, 1)

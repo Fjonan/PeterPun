@@ -29,7 +29,7 @@ script = ExtResource("1_ora50")
 position = Vector2(-1, -2.38419e-07)
 scale = Vector2(1.25, 0.5)
 sprite_frames = SubResource("SpriteFrames_op6ci")
-frame_progress = 0.439135
+frame_progress = 0.509383
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

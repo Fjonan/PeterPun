@@ -21,7 +21,7 @@ func init_prompt() -> void:
 
 
 func get_prompt() -> String:
-	return prompt_text
+	return prompt_text.to_upper()
 
 
 func set_next_character(next_character_index: int):

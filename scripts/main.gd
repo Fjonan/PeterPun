@@ -39,7 +39,7 @@ func find_new_active_enemy(typed_character: String):
 func found_new_active_enemy(typed_character: String, enemy) -> bool:
 	var prompt = enemy.get_prompt()
 	var next_character = prompt.substr(0, 1)
-	if next_character == typed_character:
+	if next_character == typed_character.to_upper():
 		print("found new enemy that starts with %s" % next_character)
 		active_enemy = enemy
 		current_letter_index = 1
@@ -52,7 +52,7 @@ func found_new_active_enemy(typed_character: String, enemy) -> bool:
 func player_typed(key_typed: String):
 	var prompt = active_enemy.get_prompt()
 	var next_character = prompt.substr(current_letter_index, 1)
-	if key_typed == next_character:
+	if key_typed.to_upper() == next_character:
 		print("successfully typed %s" % key_typed)
 		GlobalSignals.emit_signal("shoot")
 		current_letter_index += 1

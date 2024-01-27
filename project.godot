@@ -24,6 +24,10 @@ GlobalSignals="*res://scripts/globalSignals.gd"
 
 project/assembly_name="Peter Pun"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+
 [importer_defaults]
 
 texture={

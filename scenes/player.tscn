@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=29 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
 [ext_resource type="Texture2D" uid="uid://dkmm6l626d61s" path="res://assets/Animations/Characters/heroRight.png" id="2_31skh"]
 [ext_resource type="Texture2D" uid="uid://di8c0oidl182h" path="res://assets/Animations/Characters/heroLeft.png" id="4_i7nm6"]
 [ext_resource type="PackedScene" uid="uid://y5i0742xavus" path="res://scenes/weapon.tscn" id="5_j5fpl"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_0aqdl"]
 [ext_resource type="Texture2D" uid="uid://hdexj3njx1d0" path="res://assets/survivalgame-player-green.png" id="9_6o5ct"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckdks"]
@@ -183,17 +184,43 @@ animations = [{
 radius = 33.6634
 height = 114.851
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="Node2D"]
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+script = ExtResource("6_0aqdl")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 3
+follow_group = Array[NodePath]([NodePath("../CharacterBody2D")])
+follow_parameters/auto_zoom = false
+follow_parameters/target_offset = Vector2(0, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 1.0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 script = ExtResource("1_5x7pt")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(1.65625, 1.625)
 sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"right"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-1, 1)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
 
-[node name="Weapon" parent="." instance=ExtResource("5_j5fpl")]
+[node name="Weapon" parent="CharacterBody2D" instance=ExtResource("5_j5fpl")]

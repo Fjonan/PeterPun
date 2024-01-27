@@ -1,12 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=22 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
-[ext_resource type="Texture2D" uid="uid://b8e8vd5enml8" path="res://assets/Animations/Character/left/01.png" id="5_3lpcd"]
-[ext_resource type="Texture2D" uid="uid://cbco2yl2w72fw" path="res://assets/Animations/Character/left/02.png" id="6_xteru"]
 [ext_resource type="Texture2D" uid="uid://dmahv43j500y" path="res://assets/Animations/Character/idle/01.png" id="7_cnmlp"]
-[ext_resource type="Texture2D" uid="uid://cbyb2kismyp2t" path="res://assets/Animations/Character/left/03.png" id="7_f048y"]
 [ext_resource type="Texture2D" uid="uid://xrs6kyi2jtwi" path="res://assets/Animations/Character/idle/02.png" id="8_eildw"]
-[ext_resource type="Texture2D" uid="uid://bq2wklq15ttu" path="res://assets/Animations/Character/left/04.png" id="8_mlr74"]
 [ext_resource type="Texture2D" uid="uid://hdexj3njx1d0" path="res://assets/survivalgame-player-green.png" id="9_6o5ct"]
 [ext_resource type="Texture2D" uid="uid://b8e8vd5enml8" path="res://assets/Animations/Character/right/01.png" id="10_nhjti"]
 [ext_resource type="Texture2D" uid="uid://cbco2yl2w72fw" path="res://assets/Animations/Character/right/02.png" id="11_f5f7k"]
@@ -80,16 +76,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_3lpcd")
+"texture": ExtResource("10_nhjti")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_xteru")
+"texture": ExtResource("11_f5f7k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_f048y")
+"texture": ExtResource("12_f40rm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_mlr74")
+"texture": ExtResource("13_u7m85")
 }],
 "loop": true,
 "name": &"left",

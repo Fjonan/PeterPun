@@ -1,10 +1,12 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=32 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
 [ext_resource type="Texture2D" uid="uid://dkmm6l626d61s" path="res://assets/Animations/Characters/heroRight.png" id="2_31skh"]
 [ext_resource type="Texture2D" uid="uid://di8c0oidl182h" path="res://assets/Animations/Characters/heroLeft.png" id="4_i7nm6"]
 [ext_resource type="PackedScene" uid="uid://y5i0742xavus" path="res://scenes/weapon.tscn" id="5_j5fpl"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="6_0aqdl"]
+[ext_resource type="PackedScene" uid="uid://b8novdmmov8fo" path="res://scenes/guns/ak.tscn" id="7_8anfs"]
+[ext_resource type="Script" path="res://scripts/weaponManager.gd" id="7_exj02"]
 [ext_resource type="Texture2D" uid="uid://hdexj3njx1d0" path="res://assets/survivalgame-player-green.png" id="9_6o5ct"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckdks"]
@@ -229,11 +231,12 @@ scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
 
 [node name="Weapon" parent="CharacterBody2D" instance=ExtResource("5_j5fpl")]
+visible = false
 
 [node name="LoseArea" type="Area2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/LoseArea"]
-position = Vector2(1, 2.5)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_arhdb")
 
 [node name="SpawnContainer" type="Node2D" parent="CharacterBody2D"]
@@ -252,5 +255,10 @@ position = Vector2(149, 184)
 
 [node name="Position2D5" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
 position = Vector2(0, 215)
+
+[node name="WeaponManager" type="Node2D" parent="CharacterBody2D"]
+script = ExtResource("7_exj02")
+
+[node name="AK" parent="CharacterBody2D/WeaponManager" instance=ExtResource("7_8anfs")]
 
 [connection signal="body_entered" from="CharacterBody2D/LoseArea" to="CharacterBody2D" method="_on_lose_area_body_entered"]

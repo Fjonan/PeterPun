@@ -5,20 +5,17 @@ extends CharacterBody2D
 @export var acceleration = 0.25
 @export var cam: PhantomCamera2D = null
 
-@onready var muzzle = $Weapon/Muzzle
-@onready var weaponsprite = $Weapon/WeaponSprite
+@onready var weaponmanager = $WeaponManager
 
 var player_state = "idle"
 var muzzle_radius = 40
 
 func _ready():
-	GlobalSignals.connect("shoot", Callable(self, "shoot"))
-	cam.append_follow_group_node($Weapon/Aimdot)
-
+	cam.append_follow_group_node(weaponmanager.current_weapon.get_node("Aimdot"))
 
 func _physics_process(delta):
 	#updateMuzzle()
-	updateWeapon()
+	#updateWeapon()
 	var direction = get_input()
 	
 	if direction.length() > 0:
@@ -60,22 +57,6 @@ func get_input():
 	if Input.is_action_pressed('ui_up'):
 		input.y -= 1
 	return input
-	
-func shoot():
-	GlobalSignals.emit_signal("camera_shake")
-	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	GlobalSignals.emit_signal("bullet_fired", muzzle.global_transform, position, direction)
-
-func updateMuzzle():
-	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	muzzle.position = position
-	
-func updateWeapon(): 
-	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	var updated_rotation = $Weapon.position.direction_to(position).angle()
-	$Weapon.rotation = updated_rotation
 
 func player():
 	pass

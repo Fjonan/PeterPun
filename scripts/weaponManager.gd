@@ -21,6 +21,13 @@ func shoot():
 	GlobalSignals.emit_signal("bullet_fired", current_weapon.get_node("Muzzle").global_transform, position, direction, current_weapon.damage)
 	
 func updateWeapon(): 
-	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	var updated_rotation = current_weapon.position.direction_to(position).angle()
-	current_weapon.rotation = updated_rotation
+	#var leftRight = Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left")
+	#var upDown = Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")
+	
+	#var position = Vector2(leftRight, upDown).normalized() * muzzle_radius
+	#var updated_rotation = current_weapon.position.direction_to(position).angle()
+	#current_weapon.rotation = updated_rotation
+	
+	var aim_dir = Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down")) * muzzle_radius
+	if aim_dir != Vector2.ZERO:
+		current_weapon.rotation = lerp_angle(current_weapon.rotation, aim_dir.angle(), 0.01)

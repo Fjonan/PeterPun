@@ -55,6 +55,7 @@ func player_typed(key_typed: String):
 	var next_character = prompt.substr(current_letter_index, 1)
 	if key_typed == next_character:
 		print("successfully typed %s" % key_typed)
+		GlobalSignals.emit_signal("shoot")
 		current_letter_index += 1
 		active_enemy.set_next_character(current_letter_index)
 		if current_letter_index == prompt.length():

@@ -16,7 +16,7 @@ var Enemy = preload("res://scenes/enemy.tscn")
 @onready var game_over_screen = $CanvasLayer/GameOverScreen
 
 
-var active_enemy = null
+var active_pun = null
 var current_letter_index: int = -1
 
 var difficulty: int = 0
@@ -24,41 +24,33 @@ var enemies_killed: int = 0
 
 func _ready() -> void:
 	start_game()
-	pun1.init_prompt()
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 
 
-func find_new_active_enemy(typed_character: String):
-	if found_new_active_enemy(typed_character, pun1):
-		return
-
-
-func found_new_active_enemy(typed_character: String, enemy) -> bool:
-	var prompt = enemy.get_prompt()
+func find_new_prompt(typed_character: String, puns) -> bool:
+	var prompt = puns.get_prompt()
 	var next_character = prompt.substr(0, 1)
 	if next_character == typed_character.to_upper():
-		print("found new enemy that starts with %s" % next_character)
-		active_enemy = enemy
+		active_pun = puns
 		current_letter_index = 1
-		active_enemy.set_next_character(current_letter_index)
+		active_pun.set_next_character(current_letter_index)
 		return true
 	else:
 		return false
 
 
 func player_typed(key_typed: String):
-	var prompt = active_enemy.get_prompt()
+	var prompt = active_pun.get_prompt()
 	var next_character = prompt.substr(current_letter_index, 1)
 	if key_typed.to_upper() == next_character:
 		print("successfully typed %s" % key_typed)
 		GlobalSignals.emit_signal("shoot")
 		current_letter_index += 1
-		active_enemy.set_next_character(current_letter_index)
+		active_pun.set_next_character(current_letter_index)
 		if current_letter_index == prompt.length():
-			print("done")
 			current_letter_index = -1
-			active_enemy.init_prompt()
-			active_enemy = null
+			active_pun.init_prompt()
+			active_pun = null
 			enemies_killed += 1
 			killed_value.text = str(enemies_killed)
 	else:
@@ -71,8 +63,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
 
-		if active_enemy == null:
-			find_new_active_enemy(key_typed)
+		if active_pun == null:
+			find_new_prompt(key_typed, pun1)
 		else:
 			player_typed(key_typed)
 
@@ -86,7 +78,7 @@ func spawn_enemy():
 	var spawns = spawn_container.get_children()
 	var index = randi() % spawns.size()
 	enemy_instance.global_position = spawns[index].global_position
-	add_child(enemy_instance)
+	enemy_container.add_child(enemy_instance)
 	enemy_instance.set_difficulty(difficulty)
 
 
@@ -102,15 +94,19 @@ func _on_DifficultyTimer_timeout() -> void:
 
 func game_over():
 	game_over_screen.show()
+	
 	spawn_timer.stop()
 	difficulty_timer.stop()
-	active_enemy = null
+	
+	active_pun = null
 	current_letter_index = -1
+	
 	for enemy in enemy_container.get_children():
 		enemy.queue_free()
 
 
 func start_game():
+	pun1.init_prompt()
 	game_over_screen.hide()
 	difficulty = 0
 	enemies_killed = 0

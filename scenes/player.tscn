@@ -183,13 +183,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp6tl"]
-radius = 45.5446
-height = 114.851
+radius = 55.4455
+height = 126.733
 
 [node name="Player" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(1.82169e-44, 1.4013e-45)
+position = Vector2(1.4013e-45, 1.4013e-45)
 script = ExtResource("6_0aqdl")
 priority_override = false
 priority = 0
@@ -223,6 +223,7 @@ sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 1)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
 

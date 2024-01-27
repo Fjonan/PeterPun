@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed = 200
 @export var friction = 0.5
@@ -28,10 +29,10 @@ func _physics_process(delta):
 
 	play_animation(direction)
 	move_and_slide()
-	
+
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider().name == "Enemy":
+		var body = get_slide_collision(i).get_collider() as Enemy
+		if body != null:
 			GlobalSignals.emit_signal("game_over")
 	
 	if Input.is_action_just_pressed("shoot"):

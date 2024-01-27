@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=30 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
 [ext_resource type="Texture2D" uid="uid://dkmm6l626d61s" path="res://assets/Animations/Characters/heroRight.png" id="2_31skh"]
@@ -184,6 +184,9 @@ animations = [{
 radius = 33.6634
 height = 114.851
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arhdb"]
+size = Vector2(32, 53)
+
 [node name="Player" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
@@ -226,3 +229,11 @@ scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
 
 [node name="Weapon" parent="CharacterBody2D" instance=ExtResource("5_j5fpl")]
+
+[node name="LoseArea" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/LoseArea"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_arhdb")
+
+[connection signal="body_entered" from="CharacterBody2D/LoseArea" to="CharacterBody2D" method="_on_lose_area_body_entered"]

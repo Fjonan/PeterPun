@@ -187,12 +187,13 @@ height = 114.851
 [node name="Player" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(4.2039e-45, 4.2039e-45)
 script = ExtResource("6_0aqdl")
 priority_override = false
 priority = 0
-zoom = Vector2(1, 1)
+zoom = Vector2(2, 2)
 follow_mode = 3
-follow_group = Array[NodePath]([NodePath("../CharacterBody2D")])
+follow_group = Array[NodePath]([NodePath("../CharacterBody2D/AnimatedSprite2D")])
 follow_parameters/auto_zoom = false
 follow_parameters/target_offset = Vector2(0, 0)
 follow_parameters/damping = true
@@ -207,11 +208,12 @@ limit/bottom = 10000000
 limit/limit_node_target = NodePath("")
 limit/smoothed = false
 tween_parameters = null
-tween_on_load = true
+tween_on_load = false
 inactive_update_mode = 0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("cam") groups=["player"]]
 script = ExtResource("1_5x7pt")
+cam = NodePath("../PhantomCamera2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(1.65625, 1.625)

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 200
 @export var friction = 0.5
 @export var acceleration = 0.25
+@export var cam: PhantomCamera2D = null
 
 @onready var muzzle = $Weapon/Muzzle
 @onready var weaponsprite = $Weapon/WeaponSprite
@@ -12,7 +13,8 @@ var muzzle_radius = 40
 
 func _ready():
 	GlobalSignals.connect("shoot", Callable(self, "shoot"))
-	pass
+	cam.append_follow_group_node($Weapon/Aimdot)
+
 
 func _physics_process(delta):
 	#updateMuzzle()

@@ -119,6 +119,5 @@ text = "Type this!"
 scroll_active = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-1.26953, -0.634766)
 shape = SubResource("2")

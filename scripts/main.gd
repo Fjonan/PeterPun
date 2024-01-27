@@ -65,6 +65,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
+		GlobalSignals.emit_signal("player_typed")
 
 		if active_pun == null:
 			find_new_prompt(key_typed, pun1)

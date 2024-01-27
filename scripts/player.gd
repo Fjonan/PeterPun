@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var speed = 200
+var speed_default = speed
 @export var friction = 0.5
 @export var acceleration = 0.25
 @export var cam: PhantomCamera2D = null
@@ -17,6 +18,7 @@ func _ready():
 	cam.append_follow_group_node(weaponmanager.current_weapon.get_node("Aimdot"))
 	GlobalSignals.connect("game_over", Callable(self, "lock_controlls"))
 	GlobalSignals.connect("game_started", Callable(self, "lock_controlls"))
+	GlobalSignals.connect("camera_shake", Callable(self, "start_slowdown"))
 	
 func _physics_process(delta):
 	
@@ -72,4 +74,12 @@ func get_input():
 
 func lock_controlls(): 
 	controlls_locked = !controlls_locked
-	
+
+
+func start_slowdown():
+	speed = 100
+	print("slow player")
+
+func _on_typing_timer_timeout():
+	print("fast player")
+	speed = speed_default

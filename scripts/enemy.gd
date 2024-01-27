@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy 
 
+var splatter = preload("res://scenes/effects/splatter.tscn")
+
 @export var speed = 40
 @export var health = 2
 
@@ -55,6 +57,7 @@ func handle_hit(amount: int):
 
 	if (health == 0):
 		spawn_particles()
+		spawn_splatter()
 		queue_free()
 
 #TODO: Create impact manager for this if time
@@ -71,6 +74,11 @@ func handle_difficulty_increased(new_difficulty: int):
 	var new_speed = speed + new_difficulty
 	speed = clamp(new_speed, speed, 300)
 
+
+func spawn_splatter():
+	var splatter_instance = splatter.instantiate()
+	splatter_instance.global_position = self.global_position
+	get_parent().add_child(splatter_instance)
 
 ################### 
 # OLD PROMT STUFF #

@@ -37,7 +37,6 @@ func find_new_prompt(typed_character: String, puns) -> bool:
 	else:
 		return false
 
-
 func player_typed(key_typed: String):
 	var prompt = active_pun.get_prompt()
 	var next_character = prompt.substr(current_letter_index, 1)
@@ -90,7 +89,6 @@ func _on_DifficultyTimer_timeout() -> void:
 	difficulty_value.text = str(difficulty)
 
 
-
 func game_over():
 	game_over_screen.show()
 	
@@ -106,7 +104,7 @@ func game_over():
 
 func start_game():
 	pun1.init_prompt()
-	game_over_screen.hide()
+
 	difficulty = 0
 	enemies_killed = 0
 	difficulty_value.text = str(0)
@@ -115,7 +113,10 @@ func start_game():
 	spawn_timer.start()
 	difficulty_timer.start()
 	spawn_enemy()
-
-
+	GlobalSignals.emit_signal("game_started")
+	game_over_screen.hide()
+func get_is_game_started() -> bool:
+	return current_letter_index != -1
+	
 func _on_RestartButton_pressed() -> void:
 	start_game()

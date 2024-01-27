@@ -11,12 +11,17 @@ class_name Player
 var player_state = "idle"
 var muzzle_radius = 40
 
+var controlls_locked = true
+
 func _ready():
 	cam.append_follow_group_node(weaponmanager.current_weapon.get_node("Aimdot"))
-
+	GlobalSignals.connect("game_over", Callable(self, "lock_controlls"))
+	GlobalSignals.connect("game_started", Callable(self, "lock_controlls"))
+	
 func _physics_process(delta):
-	#updateMuzzle()
-	#updateWeapon()
+	
+	if (controlls_locked): return
+	
 	var direction = get_input()
 	
 	if direction.length() > 0:
@@ -31,13 +36,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 	for i in get_slide_collision_count():
-		var body = get_slide_collision(i).get_collider() as Enemy
-		if body != null:
+		var enemey = get_slide_collision(i).get_collider() as Enemy
+		if enemey != null:
 			GlobalSignals.emit_signal("game_over")
+			break
 	
 	if Input.is_action_just_pressed("shoot"):
 		GlobalSignals.emit_signal("shoot")
-
 	
 func play_animation(dir):
 	if player_state == "idle":
@@ -65,5 +70,6 @@ func get_input():
 		input.y -= 1
 	return input
 
-func player():
-	pass
+func lock_controlls(): 
+	controlls_locked = !controlls_locked
+	

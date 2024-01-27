@@ -19,4 +19,4 @@ func shoot():
 func updateWeapon(): 
 	var aim_dir = Vector2(Input.get_axis("aim_left", "aim_right"), Input.get_axis("aim_up", "aim_down")) * muzzle_radius
 	if aim_dir != Vector2.ZERO:
-		current_weapon.rotation = lerp_angle(current_weapon.rotation, aim_dir.angle(), 0.0025)
+		current_weapon.rotation = lerp_angle(current_weapon.rotation, aim_dir.angle(), 0.05)

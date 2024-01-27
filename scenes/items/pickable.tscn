@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ym8rhrm3pmbs"]
+
+[ext_resource type="Script" path="res://scripts/pickable.gd" id="1_qrcqp"]
+[ext_resource type="Texture2D" uid="uid://cspwkdhjiocue" path="res://assets/tiles/tilesAtlas.png" id="2_i40g1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2n54"]
+atlas = ExtResource("2_i40g1")
+region = Rect2(0.00292969, 97.4911, 32.3179, 29.3799)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ncyow"]
+radius = 19.0
+
+[node name="Pickable" type="Area2D"]
+script = ExtResource("1_qrcqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_r2n54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ncyow")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

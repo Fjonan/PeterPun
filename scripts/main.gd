@@ -1,8 +1,10 @@
 extends Node2D
 
 var Enemy = preload("res://scenes/enemy.tscn")
+var Pickup = preload("res://scenes/items/pickable.tscn")
 
 @onready var enemy_container = $EnemyContainer
+@onready var pickup_container = $PickupContainer
 @onready var spawn_container = $Player/CharacterBody2D/SpawnContainer
 @onready var spawn_timer = $SpawnTimer
 @onready var difficulty_timer = $DifficultyTimer
@@ -23,6 +25,11 @@ var enemies_killed: int = 0
 
 func _ready() -> void:
 	start_game()
+
+	var pickup_instance = Pickup.instantiate()
+	pickup_instance.global_position = Vector2(150, 15)
+	pickup_container.add_child(pickup_instance)
+	
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 
 func find_new_prompt(typed_character: String, puns) -> bool:
@@ -108,6 +115,7 @@ func start_game():
 	spawn_enemy()
 	GlobalSignals.emit_signal("game_started")
 	game_over_screen.hide()
+	
 func get_is_game_started() -> bool:
 	return current_letter_index != -1
 	

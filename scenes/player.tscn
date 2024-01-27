@@ -1,11 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=28 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
 [ext_resource type="Texture2D" uid="uid://dkmm6l626d61s" path="res://assets/Animations/Characters/heroRight.png" id="2_31skh"]
 [ext_resource type="Texture2D" uid="uid://di8c0oidl182h" path="res://assets/Animations/Characters/heroLeft.png" id="4_i7nm6"]
+[ext_resource type="PackedScene" uid="uid://y5i0742xavus" path="res://scenes/weapon.tscn" id="5_j5fpl"]
 [ext_resource type="Texture2D" uid="uid://hdexj3njx1d0" path="res://assets/survivalgame-player-green.png" id="9_6o5ct"]
-[ext_resource type="Texture2D" uid="uid://d0y7qlte8oebx" path="res://assets/guns/machineGun.png" id="9_u83vq"]
-[ext_resource type="Texture2D" uid="uid://c54svuisx5jr5" path="res://assets/dot.png" id="13_xykai"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckdks"]
 atlas = ExtResource("2_31skh")
@@ -197,18 +196,4 @@ position = Vector2(-1, 1)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
 
-[node name="Weapon" type="Node2D" parent="."]
-
-[node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
-position = Vector2(-8, 9)
-scale = Vector2(1.65527, 1.47168)
-texture = ExtResource("9_u83vq")
-
-[node name="Muzzle" type="Marker2D" parent="Weapon"]
-position = Vector2(23, 4)
-
-[node name="Sprite2D" type="Sprite2D" parent="Weapon/Muzzle"]
-visible = false
-position = Vector2(1, -4.76837e-07)
-scale = Vector2(0.0125, 0.0125)
-texture = ExtResource("13_xykai")
+[node name="Weapon" parent="." instance=ExtResource("5_j5fpl")]

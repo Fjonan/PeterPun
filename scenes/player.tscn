@@ -276,3 +276,9 @@ position = Vector2(128, -573)
 script = ExtResource("7_exj02")
 
 [node name="AK" parent="CharacterBody2D/WeaponManager" instance=ExtResource("7_8anfs")]
+
+[node name="TypingTimer" type="Timer" parent="CharacterBody2D/WeaponManager"]
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/WeaponManager/TypingTimer" to="CharacterBody2D" method="_on_typing_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/WeaponManager/TypingTimer" to="CharacterBody2D/WeaponManager" method="_on_typing_timer_timeout"]

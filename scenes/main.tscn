@@ -35,23 +35,6 @@ script = ExtResource("1_een7u")
 
 [node name="TileMap" parent="." instance=ExtResource("2_auxsm")]
 
-[node name="SpawnContainer" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="SpawnContainer"]
-position = Vector2(1092.99, 84.4438)
-
-[node name="Position2D2" type="Marker2D" parent="SpawnContainer"]
-position = Vector2(1089.8, 181.634)
-
-[node name="Position2D3" type="Marker2D" parent="SpawnContainer"]
-position = Vector2(1091.4, 272.451)
-
-[node name="Position2D4" type="Marker2D" parent="SpawnContainer"]
-position = Vector2(1092.99, 372.827)
-
-[node name="Position2D5" type="Marker2D" parent="SpawnContainer"]
-position = Vector2(1094.58, 473.204)
-
 [node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -168,7 +151,6 @@ script = ExtResource("9_j4bfx")
 
 [node name="BG Music" type="AudioStreamPlayer2D" parent="AudioListener2D"]
 stream = ExtResource("9_ii4dm")
-volume_db = -39.641
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

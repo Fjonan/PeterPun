@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfkflsawh2gni"]
+[gd_scene load_steps=15 format=3 uid="uid://dfkflsawh2gni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_een7u"]
 [ext_resource type="PackedScene" uid="uid://cmh3ieveab3vu" path="res://scenes/player.tscn" id="2_ac05l"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/typeTarget.gd" id="6_qlddw"]
 [ext_resource type="AudioStream" uid="uid://0kp2a3wwsebb" path="res://assets/metal-dark-matter-111451.mp3" id="9_ii4dm"]
 [ext_resource type="Script" path="res://scripts/shot.gd" id="9_j4bfx"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_ly2xo"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(45.8038, 666.384)
@@ -178,6 +179,14 @@ script = ExtResource("9_j4bfx")
 [node name="BG Music" type="AudioStreamPlayer2D" parent="AudioListener2D"]
 stream = ExtResource("9_ii4dm")
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(452, 59)
+zoom = Vector2(1.5, 1.5)
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("11_ly2xo")
 
 [connection signal="body_entered" from="LoseArea" to="." method="_on_LoseArea_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

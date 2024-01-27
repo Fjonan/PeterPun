@@ -46,6 +46,7 @@ func play_animation(dir):
 			$AnimatedSprite2D.play("idle")
 
 func handle_hit(): 
+	GlobalSignals.emit_signal("hit")
 	print('Enemy down')
 	queue_free()
 

@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var friction = 0.5
 @export var acceleration = 0.25
 
+@onready var muzzle = $Weapon/Muzzle
+
 var player_state = "idle"
 var muzzle_radius = 40
 
@@ -12,6 +14,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+	updateMuzzle()
 	var direction = get_input()
 	
 	if direction.length() > 0:
@@ -59,13 +62,12 @@ func get_input():
 func shoot():
 	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	GlobalSignals.emit_signal("bullet_fired", $Muzzle.global_transform, position, direction)
-	
+	GlobalSignals.emit_signal("bullet_fired", muzzle.global_transform, position, direction)
 
-func _process(delta):
-	# $AimNode.position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	# $Muzzle.position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	pass
+func updateMuzzle():
+	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
+	muzzle.position = position
 
 func player():
 	pass

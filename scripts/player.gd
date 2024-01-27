@@ -7,6 +7,10 @@ extends CharacterBody2D
 var player_state = "idle"
 var muzzle_radius = 40
 
+func _ready():
+	GlobalSignals.connect("shoot", Callable(self, "shoot"))
+	pass
+
 func _physics_process(delta):
 	var direction = get_input()
 	
@@ -22,7 +26,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
+		GlobalSignals.emit_signal("shoot")
 	
 func play_animation(dir):
 	if player_state == "idle":

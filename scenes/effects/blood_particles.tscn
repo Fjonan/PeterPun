@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://gbvlbhy7qa58"]
+
+[ext_resource type="Texture2D" uid="uid://dq76t1basxgj7" path="res://assets/blood.png" id="1_s2cxx"]
+[ext_resource type="Script" path="res://scripts/effects/blood_particles.gd" id="2_xe2xh"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1cs2d"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 30.35
+initial_velocity_min = 104.65
+initial_velocity_max = 162.79
+angular_velocity_max = 100.0
+radial_velocity_max = 106.98
+gravity = Vector3(0, 0, 0)
+damping_max = 47.674
+scale_min = 0.25
+scale_max = 0.5
+
+[node name="BloodParticles" type="GPUParticles2D"]
+position = Vector2(-3, 7)
+emitting = false
+amount = 100
+amount_ratio = 0.598
+process_material = SubResource("ParticleProcessMaterial_1cs2d")
+texture = ExtResource("1_s2cxx")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+randomness = 0.41
+script = ExtResource("2_xe2xh")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

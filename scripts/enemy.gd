@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var prompt = $RichTextLabel
 @onready var prompt_text = prompt.text
 
+const BLOOD_PARTICLES = preload("res://scenes/effects/blood_particles.tscn")
+
 var state = "moving"
 
 var _position_last_frame := Vector2()
@@ -45,10 +47,17 @@ func play_animation(dir):
 		if dir == 3: #south
 			$AnimatedSprite2D.play("idle")
 
-func handle_hit(): 
+func handle_hit():
 	GlobalSignals.emit_signal("hit")
-	print('Enemy down')
+	spawn_particles()
 	queue_free()
+
+#TODO: Create impact manager for this if time
+func spawn_particles(): 
+	var particles = BLOOD_PARTICLES.instantiate()
+	get_parent().add_child(particles)
+	particles.global_position = global_position
+	particles.start_emitting()
 
 			
 ################### 

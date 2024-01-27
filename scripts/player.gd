@@ -33,7 +33,6 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision.get_collider().name == "Enemy":
 			GlobalSignals.emit_signal("game_over")
-			queue_free()
 	
 	if Input.is_action_just_pressed("shoot"):
 		GlobalSignals.emit_signal("shoot")

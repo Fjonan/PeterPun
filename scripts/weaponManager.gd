@@ -18,7 +18,7 @@ func shoot():
 	GlobalSignals.emit_signal("camera_shake")
 	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	GlobalSignals.emit_signal("bullet_fired", current_weapon.get_node("Muzzle").global_transform, position, direction)
+	GlobalSignals.emit_signal("bullet_fired", current_weapon.get_node("Muzzle").global_transform, position, direction, current_weapon.damage)
 	
 func updateWeapon(): 
 	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius

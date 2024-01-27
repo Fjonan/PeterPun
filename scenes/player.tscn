@@ -189,7 +189,7 @@ height = 114.851
 [node name="Player" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(3.83238e-17, 2.13867e-31)
+position = Vector2(1.82169e-44, 1.4013e-45)
 script = ExtResource("6_0aqdl")
 priority_override = false
 priority = 0

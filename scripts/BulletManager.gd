@@ -8,9 +8,9 @@ func _ready():
 	GlobalSignals.connect("bullet_fired", Callable(self, "_on_bullet_fired"))
 
 # Called when the node enters the scene tree for the first time.
-func _on_bullet_fired(transform, position, direction):
+func _on_bullet_fired(transform, position, direction, damage):
 	print("Fired from manager")
 	var bullet = Bullet.instantiate()
 	add_child(bullet)
 	bullet.transform = transform
-	bullet.set_direction(position, direction)
+	bullet.spawn_Bullet(position, direction, damage)

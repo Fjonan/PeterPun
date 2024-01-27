@@ -35,18 +35,17 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 script = ExtResource("1_een7u")
 
 [node name="TileMap" parent="." instance=ExtResource("2_auxsm")]
+position = Vector2(-596, -367)
 
 [node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
 
 [node name="DifficultyTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 3.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_ac05l")]
-position = Vector2(452, 179)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -155,7 +154,6 @@ stream = ExtResource("9_ii4dm")
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(452, 179)
 zoom = Vector2(2, 2)
 editor_draw_limits = true
 script = ExtResource("11_7i2if")

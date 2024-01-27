@@ -5,10 +5,12 @@ extends CharacterBody2D
 @export var green = Color("#639765")
 @export var red = Color("#a65455")
 
-@export var speed = 0.5
+@export var speed = 40
 
 @onready var prompt = $RichTextLabel
 @onready var prompt_text = prompt.text
+
+@onready var player = get_node("/root/Main/Player/CharacterBody2D")
 
 const BLOOD_PARTICLES = preload("res://scenes/effects/blood_particles.tscn")
 
@@ -17,12 +19,21 @@ var state = "moving"
 var _position_last_frame := Vector2()
 var _cardinal_direction = null
 
+
+var player_position
+var target_position
+var motion = Vector2(0,0)
+
+
 func _ready() -> void:
 	init_prompt()
 	GlobalSignals.connect("difficulty_increased", Callable(self, "handle_difficulty_increased"))
 	
 func _physics_process(delta: float) -> void:
-	global_position.x -= speed
+	motion = position.direction_to(player.position) * speed
+	print(motion)
+	set_velocity(motion)
+	move_and_slide()
 	play_animation(_getMovementDirection())
 
 func _getMovementDirection() -> int:
@@ -75,7 +86,7 @@ func set_difficulty(difficulty: int):
 
 func handle_difficulty_increased(new_difficulty: int):
 	var new_speed = speed + (0.125 * new_difficulty)
-	speed = clamp(new_speed, speed, 3)
+	speed = clamp(new_speed, speed, 300)
 
 
 func get_prompt() -> String:

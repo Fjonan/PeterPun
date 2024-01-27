@@ -32,10 +32,6 @@ func find_new_active_enemy(typed_character: String):
 	if found_new_active_enemy(typed_character, pun1):
 		return
 
-	for enemy in enemy_container.get_children():
-		if found_new_active_enemy(typed_character, enemy):
-			return
-
 
 func found_new_active_enemy(typed_character: String, enemy) -> bool:
 	var prompt = enemy.get_prompt()
@@ -90,7 +86,7 @@ func spawn_enemy():
 	var spawns = spawn_container.get_children()
 	var index = randi() % spawns.size()
 	enemy_instance.global_position = spawns[index].global_position
-	enemy_container.add_child(enemy_instance)
+	add_child(enemy_instance)
 	enemy_instance.set_difficulty(difficulty)
 
 

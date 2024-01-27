@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://y5i0742xavus"]
+[gd_scene load_steps=4 format=3 uid="uid://y5i0742xavus"]
 
 [ext_resource type="Texture2D" uid="uid://d0y7qlte8oebx" path="res://assets/guns/machineGun.png" id="1_kim4k"]
 [ext_resource type="Texture2D" uid="uid://c54svuisx5jr5" path="res://assets/dot.png" id="2_kb4yw"]
+[ext_resource type="Texture2D" uid="uid://bpd2rdh45eiil" path="res://assets/reticle.png" id="3_vrrpb"]
 
 [node name="Weapon" type="Node2D"]
 
@@ -21,3 +22,8 @@ texture = ExtResource("2_kb4yw")
 
 [node name="Aimdot" type="Node2D" parent="."]
 position = Vector2(275, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Aimdot"]
+position = Vector2(-120, 5)
+scale = Vector2(0.145833, 0.145833)
+texture = ExtResource("3_vrrpb")

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var acceleration = 0.25
 
 @onready var muzzle = $Weapon/Muzzle
+@onready var weaponsprite = $Weapon/WeaponSprite
 
 var player_state = "idle"
 var muzzle_radius = 40
@@ -14,7 +15,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	updateMuzzle()
+	#updateMuzzle()
+	updateWeapon()
 	var direction = get_input()
 	
 	if direction.length() > 0:
@@ -68,6 +70,11 @@ func updateMuzzle():
 	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
 	muzzle.position = position
+	
+func updateWeapon(): 
+	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
+	var updated_rotation = $Weapon.position.direction_to(position).angle()
+	$Weapon.rotation = updated_rotation
 
 func player():
 	pass

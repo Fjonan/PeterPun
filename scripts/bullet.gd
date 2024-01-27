@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 @export var speed = 8
 
@@ -15,5 +15,5 @@ func set_direction(origin: Vector2, direction: Vector2):
 		direction = Vector2(-1,0)
 		
 	self.direction = (origin - direction).normalized()
-	$Sprite2D.rotation_degrees = rad_to_deg(direction.angle())
+	rotation = direction.angle()
 

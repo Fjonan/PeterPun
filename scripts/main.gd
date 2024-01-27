@@ -91,11 +91,6 @@ func spawn_enemy():
 
 
 func _on_DifficultyTimer_timeout() -> void:
-	if difficulty >= 20:
-		difficulty_timer.stop()
-		difficulty = 20
-		return
-
 	difficulty += 1
 	GlobalSignals.emit_signal("difficulty_increased", difficulty)
 	print("Difficulty increased to %d" % difficulty)

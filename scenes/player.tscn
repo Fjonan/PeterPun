@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=31 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
 [ext_resource type="Texture2D" uid="uid://dkmm6l626d61s" path="res://assets/Animations/Characters/heroRight.png" id="2_31skh"]
@@ -183,16 +183,13 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp6tl"]
-radius = 33.6634
+radius = 45.5446
 height = 114.851
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_arhdb"]
-size = Vector2(32, 53)
 
 [node name="Player" type="Node2D"]
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(1.4013e-45, 1.4013e-45)
+position = Vector2(3.83238e-17, 2.13867e-31)
 script = ExtResource("6_0aqdl")
 priority_override = false
 priority = 0
@@ -226,18 +223,11 @@ sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-1, 1)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("CapsuleShape2D_hp6tl")
 
 [node name="Weapon" parent="CharacterBody2D" instance=ExtResource("5_j5fpl")]
 visible = false
-
-[node name="LoseArea" type="Area2D" parent="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/LoseArea"]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_arhdb")
 
 [node name="SpawnContainer" type="Node2D" parent="CharacterBody2D"]
 
@@ -260,5 +250,3 @@ position = Vector2(0, 215)
 script = ExtResource("7_exj02")
 
 [node name="AK" parent="CharacterBody2D/WeaponManager" instance=ExtResource("7_8anfs")]
-
-[connection signal="body_entered" from="CharacterBody2D/LoseArea" to="CharacterBody2D" method="_on_lose_area_body_entered"]

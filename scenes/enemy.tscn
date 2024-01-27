@@ -94,7 +94,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(73.7052, 84.7362)
+size = Vector2(27, 52)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("3")
@@ -105,6 +105,10 @@ sprite_frames = SubResource("SpriteFrames_qsvne")
 animation = &"left"
 frame = 1
 frame_progress = 0.219415
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 9.53674e-07)
+shape = SubResource("2")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -117,7 +121,3 @@ theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
 text = "Type this!"
 scroll_active = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.26953, -0.634766)
-shape = SubResource("2")

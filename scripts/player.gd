@@ -29,8 +29,15 @@ func _physics_process(delta):
 	play_animation(direction)
 	move_and_slide()
 	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "Enemy":
+			GlobalSignals.emit_signal("game_over")
+			queue_free()
+	
 	if Input.is_action_just_pressed("shoot"):
 		GlobalSignals.emit_signal("shoot")
+
 	
 func play_animation(dir):
 	if player_state == "idle":
@@ -60,7 +67,3 @@ func get_input():
 
 func player():
 	pass
-
-func _on_lose_area_body_entered(body):
-	if body.name == "Enemy":
-		GlobalSignals.emit_signal("game_over")

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Enemy 
 
 @export var blue = Color("#4682b4")
 @export var green = Color("#639765")
@@ -24,6 +24,7 @@ var player_position
 var target_position
 var motion = Vector2(0,0)
 
+var _health = 2
 
 func _ready() -> void:
 	init_prompt()
@@ -31,7 +32,6 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	motion = position.direction_to(player.position) * speed
-	print(motion)
 	set_velocity(motion)
 	move_and_slide()
 	play_animation(_getMovementDirection())
@@ -59,18 +59,27 @@ func play_animation(dir):
 			$AnimatedSprite2D.play("idle")
 
 func handle_hit():
+	_health -= 1
 	Input.start_joy_vibration(0,1,1,0.1)
 	GlobalSignals.emit_signal("hit")
-	spawn_particles()
-	queue_free()
+
+	if (_health == 0):
+		spawn_particles()
+		queue_free()
 
 #TODO: Create impact manager for this if time
 func spawn_particles(): 
-	
 	var particles = BLOOD_PARTICLES.instantiate()
 	get_parent().add_child(particles)
 	particles.global_position = global_position
 	particles.start_emitting()
+
+func set_difficulty(difficulty: int):
+	handle_difficulty_increased(difficulty)
+
+func handle_difficulty_increased(new_difficulty: int):
+	var new_speed = speed + new_difficulty
+	speed = clamp(new_speed, speed, 300)
 
 			
 ################### 
@@ -81,12 +90,6 @@ func init_prompt() -> void:
 	prompt_text = PromptList.get_prompt()
 	prompt.parse_bbcode(set_center_tags(prompt_text))
 
-func set_difficulty(difficulty: int):
-	handle_difficulty_increased(difficulty)
-
-func handle_difficulty_increased(new_difficulty: int):
-	var new_speed = speed + (0.125 * new_difficulty)
-	speed = clamp(new_speed, speed, 300)
 
 
 func get_prompt() -> String:

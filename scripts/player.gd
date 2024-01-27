@@ -33,19 +33,19 @@ func _physics_process(delta):
 	
 func play_animation(dir):
 	if player_state == "idle":
-		$AnimatedSprite2D.play("idle_old")
+		$AnimatedSprite2D.play("idle")
 		
 	if player_state == "moving":
 		if dir.x == 1:
 			print('right')
-			$AnimatedSprite2D.play("right_old")
+			$AnimatedSprite2D.play("right")
 		if dir.x == -1:
 			print('left')
-			$AnimatedSprite2D.play("left_old")
+			$AnimatedSprite2D.play("left")
 		if dir.y == 1:
-			$AnimatedSprite2D.play("idle_old")
+			$AnimatedSprite2D.play("idle")
 		if dir.y == -1:
-			$AnimatedSprite2D.play("idle_old")
+			$AnimatedSprite2D.play("idle")
 
 func get_input():
 	var input = Vector2()

@@ -22,7 +22,6 @@ var current_letter_index: int = -1
 var difficulty: int = 0
 var enemies_killed: int = 0
 
-
 func _ready() -> void:
 	start_game()
 	pun1.init_prompt()

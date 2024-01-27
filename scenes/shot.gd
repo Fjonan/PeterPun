@@ -1,7 +1,7 @@
 extends AudioListener2D
 
 
-var shotSound = preload("res://assets/212607__pgi__machine-gun-002-single-shot.ogg")
+var shotSound = preload("res://assets/audio/shot01.ogg")
 var shotSoundInstance = AudioStreamPlayer.new()
 
 func _ready():

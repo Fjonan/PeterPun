@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://blegpfvmy32ik" path="res://assets/SpaceMono-Regular.ttf" id="4_84nw7"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="5_bk7mn"]
 [ext_resource type="FontFile" uid="uid://djm43ruqxrtg4" path="res://assets/Pixeled.ttf" id="5_jnemn"]
-[ext_resource type="PackedScene" path="res://scenes/bullet.tscn" id="6_bimjx"]
+[ext_resource type="PackedScene" uid="uid://dhom8qei7ccai" path="res://scenes/bullet.tscn" id="6_bimjx"]
 [ext_resource type="Script" path="res://scripts/typeTarget.gd" id="6_qlddw"]
 [ext_resource type="AudioStream" uid="uid://0kp2a3wwsebb" path="res://assets/metal-dark-matter-111451.mp3" id="9_ii4dm"]
 [ext_resource type="Script" path="res://scripts/shot.gd" id="9_j4bfx"]

@@ -11,15 +11,44 @@ extends CharacterBody2D
 @onready var prompt = $RichTextLabel
 @onready var prompt_text = prompt.text
 
+var state = "moving"
+
+var _position_last_frame := Vector2()
+var _cardinal_direction = null
 
 func _ready() -> void:
 	init_prompt()
 	GlobalSignals.connect("difficulty_increased", Callable(self, "handle_difficulty_increased"))
 
-
 func _physics_process(delta: float) -> void:
 	global_position.x -= speed
+	var motion = position - _position_last_frame
+	if motion.length() > 0.0001:
+		_cardinal_direction = int(4.0 * (motion.rotated(PI / 4.0).angle() + PI) / TAU)
+	play_animation(_cardinal_direction)
+	_position_last_frame = position
+	
+func play_animation(dir):
+	if state == "idle":
+		$AnimatedSprite2D.play("idle")
+		
+	if state == "moving":
+		if dir == 2: #east
+			print('right')
+			$AnimatedSprite2D.play("right")
+		if dir == 0: #west
+			print('left')
+			$AnimatedSprite2D.play("left")
+		if dir == 1: #north
+			$AnimatedSprite2D.play("idle")
+		if dir == 3: #south
+			$AnimatedSprite2D.play("idle")
 
+			
+			
+################### 
+# OLD PROMT STUFF #
+###################
 
 func init_prompt() -> void:
 	prompt_text = PromptList.get_prompt()
@@ -27,7 +56,6 @@ func init_prompt() -> void:
 
 func set_difficulty(difficulty: int):
 	handle_difficulty_increased(difficulty)
-
 
 func handle_difficulty_increased(new_difficulty: int):
 	var new_speed = speed + (0.125 * new_difficulty)

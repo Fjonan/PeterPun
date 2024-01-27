@@ -183,8 +183,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp6tl"]
-radius = 55.4455
-height = 126.733
+radius = 45.5446
+height = 114.851
 
 [node name="Player" type="Node2D"]
 
@@ -233,19 +233,43 @@ visible = false
 [node name="SpawnContainer" type="Node2D" parent="CharacterBody2D"]
 
 [node name="Marker2D" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
-position = Vector2(145, -146)
+position = Vector2(340, -356)
 
 [node name="Position2D2" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
-position = Vector2(201, -39)
+position = Vector2(492, -203)
 
 [node name="Position2D3" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
-position = Vector2(223, 103)
+position = Vector2(548, 9)
 
 [node name="Position2D4" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
-position = Vector2(149, 184)
+position = Vector2(521, 269)
 
 [node name="Position2D5" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
-position = Vector2(0, 215)
+position = Vector2(264, 398)
+
+[node name="Position2D6" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(4, 447)
+
+[node name="Position2D7" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(-356, 388)
+
+[node name="Position2D8" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(-540, 201)
+
+[node name="Position2D9" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(-588, -7)
+
+[node name="Position2D10" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(-516, -253)
+
+[node name="Position2D11" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(-377, -445)
+
+[node name="Position2D12" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(-171, -560)
+
+[node name="Position2D13" type="Marker2D" parent="CharacterBody2D/SpawnContainer"]
+position = Vector2(128, -573)
 
 [node name="WeaponManager" type="Node2D" parent="CharacterBody2D"]
 script = ExtResource("7_exj02")

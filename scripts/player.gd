@@ -55,7 +55,7 @@ func get_input():
 func shoot():
 	var direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
 	var position = Vector2(Input.get_action_strength("aim_right") - Input.get_action_strength("aim_left"), Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up")).normalized() * muzzle_radius
-	GlobalSignals.emit_signal("bullet_fired", position, direction)
+	GlobalSignals.emit_signal("bullet_fired", $Muzzle.global_transform, position, direction)
 	
 
 func _process(delta):

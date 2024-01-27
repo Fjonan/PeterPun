@@ -8,8 +8,9 @@ func _ready():
 	GlobalSignals.connect("shoot", Callable(self, "play_shot_sound"))
 	add_child(shotSoundInstance)
 
-
 func play_shot_sound():
 	shotSoundInstance.stop()
 	shotSoundInstance.stream = shotSound
 	shotSoundInstance.play()
+
+

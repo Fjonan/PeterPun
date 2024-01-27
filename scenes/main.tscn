@@ -177,6 +177,7 @@ script = ExtResource("9_j4bfx")
 
 [node name="BG Music" type="AudioStreamPlayer2D" parent="AudioListener2D"]
 stream = ExtResource("9_ii4dm")
+volume_db = -39.641
 autoplay = true
 
 [connection signal="body_entered" from="LoseArea" to="." method="_on_LoseArea_body_entered"]

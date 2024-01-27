@@ -7,7 +7,6 @@ extends CharacterBody2D
 
 @export var speed = 0.5
 
-
 @onready var prompt = $RichTextLabel
 @onready var prompt_text = prompt.text
 
@@ -19,32 +18,37 @@ var _cardinal_direction = null
 func _ready() -> void:
 	init_prompt()
 	GlobalSignals.connect("difficulty_increased", Callable(self, "handle_difficulty_increased"))
-
+	
 func _physics_process(delta: float) -> void:
 	global_position.x -= speed
+	play_animation(_getMovementDirection())
+
+func _getMovementDirection() -> int:
+	var _dir = 0
 	var motion = position - _position_last_frame
 	if motion.length() > 0.0001:
-		_cardinal_direction = int(4.0 * (motion.rotated(PI / 4.0).angle() + PI) / TAU)
-	play_animation(_cardinal_direction)
+		_dir = int(4.0 * (motion.rotated(PI / 4.0).angle() + PI) / TAU)
 	_position_last_frame = position
+	return _dir
 	
-func play_animation(dir):
+func play_animation(dir): 
 	if state == "idle":
 		$AnimatedSprite2D.play("idle")
 		
 	if state == "moving":
 		if dir == 2: #east
-			print('right')
 			$AnimatedSprite2D.play("right")
 		if dir == 0: #west
-			print('left')
 			$AnimatedSprite2D.play("left")
 		if dir == 1: #north
 			$AnimatedSprite2D.play("idle")
 		if dir == 3: #south
 			$AnimatedSprite2D.play("idle")
 
-			
+func handle_hit(): 
+	print('Enemy down')
+	queue_free()
+
 			
 ################### 
 # OLD PROMT STUFF #

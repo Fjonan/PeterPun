@@ -39,10 +39,8 @@ func play_animation(dir):
 		
 	if player_state == "moving":
 		if dir.x == 1:
-			print('right')
 			$AnimatedSprite2D.play("right")
 		if dir.x == -1:
-			print('left')
 			$AnimatedSprite2D.play("left")
 		if dir.y == 1:
 			$AnimatedSprite2D.play("idle")

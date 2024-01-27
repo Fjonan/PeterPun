@@ -1,8 +1,12 @@
-extends Node2D
+extends Area2D
 
 @export var speed = 8
 
 var direction = Vector2.ZERO
+
+func _ready():
+	connect("body_entered", Callable(self, "_on_Bullet_body_entered"))
+
 func _physics_process(delta: float):
 	position += direction * speed * delta
 
@@ -16,4 +20,10 @@ func set_direction(origin: Vector2, direction: Vector2):
 		
 	self.direction = (origin - direction).normalized()
 	rotation = direction.angle()
+
+func _on_Bullet_body_entered(body: Node) -> void:
+	if body.has_method("handle_hit"):
+		body.handle_hit()
+		queue_free()
+	
 

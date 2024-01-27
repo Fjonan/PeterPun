@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvm0r7738la6y"]
+[gd_scene load_steps=10 format=3 uid="uid://bvm0r7738la6y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_een7u"]
 [ext_resource type="PackedScene" uid="uid://cmh3ieveab3vu" path="res://scenes/player.tscn" id="2_ac05l"]
 [ext_resource type="Texture2D" uid="uid://c4amwbfo6h138" path="res://assets/spaceshooter/Backgrounds/blue.png" id="2_t2fkp"]
 [ext_resource type="FontFile" uid="uid://blegpfvmy32ik" path="res://assets/SpaceMono-Regular.ttf" id="4_84nw7"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="5_bk7mn"]
-[ext_resource type="PackedScene" uid="uid://dhom8qei7ccai" path="res://scenes/bullet.tscn" id="6_bimjx"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(45.8038, 666.384)
@@ -158,7 +157,6 @@ text = "0"
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("5_bk7mn")
-Bullet = ExtResource("6_bimjx")
 
 [connection signal="body_entered" from="LoseArea" to="." method="_on_LoseArea_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

@@ -2,15 +2,17 @@ extends Node2D
 
 var Enemy = preload("res://scenes/enemy.tscn")
 
-
 @onready var enemy_container = $EnemyContainer
 @onready var spawn_container = $SpawnContainer
 @onready var spawn_timer = $SpawnTimer
 @onready var difficulty_timer = $DifficultyTimer
+@onready var bullet_manager = $BulletManager
+@onready var player = $Player
 
 @onready var difficulty_value = $CanvasLayer/VBoxContainer/BottomRow/HBoxContainer/DifficultyValue
 @onready var killed_value = $CanvasLayer/VBoxContainer/TopRow2/TopRow/EnemiesKilledValue
 @onready var game_over_screen = $CanvasLayer/GameOverScreen
+
 
 var active_enemy = null
 var current_letter_index: int = -1

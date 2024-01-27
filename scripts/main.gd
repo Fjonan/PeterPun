@@ -3,7 +3,7 @@ extends Node2D
 var Enemy = preload("res://scenes/enemy.tscn")
 
 @onready var enemy_container = $EnemyContainer
-@onready var spawn_container = $SpawnContainer
+@onready var spawn_container = $Player/CharacterBody2D/SpawnContainer
 @onready var spawn_timer = $SpawnTimer
 @onready var difficulty_timer = $DifficultyTimer
 @onready var bullet_manager = $BulletManager

@@ -78,3 +78,7 @@ func updateWeapon():
 
 func player():
 	pass
+
+func _on_lose_area_body_entered(body):
+	if body.name == "Enemy":
+		GlobalSignals.emit_signal("game_over")

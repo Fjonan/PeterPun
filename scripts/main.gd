@@ -25,6 +25,7 @@ var enemies_killed: int = 0
 func _ready() -> void:
 	start_game()
 	pun1.init_prompt()
+	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 
 
 func find_new_active_enemy(typed_character: String):
@@ -106,9 +107,6 @@ func _on_DifficultyTimer_timeout() -> void:
 	spawn_timer.wait_time = clamp(new_wait_time, 1, spawn_timer.wait_time)
 	difficulty_value.text = str(difficulty)
 
-
-func _on_LoseArea_body_entered(body: Node) -> void:
-	game_over()
 
 
 func game_over():

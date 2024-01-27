@@ -48,12 +48,14 @@ func play_animation(dir):
 			$AnimatedSprite2D.play("idle")
 
 func handle_hit():
+	Input.start_joy_vibration(0,1,1,0.1)
 	GlobalSignals.emit_signal("hit")
 	spawn_particles()
 	queue_free()
 
 #TODO: Create impact manager for this if time
 func spawn_particles(): 
+	
 	var particles = BLOOD_PARTICLES.instantiate()
 	get_parent().add_child(particles)
 	particles.global_position = global_position

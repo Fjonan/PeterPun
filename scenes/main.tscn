@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfkflsawh2gni"]
+[gd_scene load_steps=15 format=3 uid="uid://dfkflsawh2gni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_een7u"]
 [ext_resource type="PackedScene" uid="uid://cmh3ieveab3vu" path="res://scenes/player.tscn" id="2_ac05l"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/typeTarget.gd" id="6_qlddw"]
 [ext_resource type="AudioStream" uid="uid://0kp2a3wwsebb" path="res://assets/metal-dark-matter-111451.mp3" id="9_ii4dm"]
 [ext_resource type="Script" path="res://scripts/sounds.gd" id="9_j4bfx"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="11_7i2if"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_ly2xo"]
 
 [sub_resource type="FontFile" id="2"]
@@ -157,6 +158,7 @@ autoplay = true
 position = Vector2(452, 179)
 zoom = Vector2(2, 2)
 editor_draw_limits = true
+script = ExtResource("11_7i2if")
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("11_ly2xo")

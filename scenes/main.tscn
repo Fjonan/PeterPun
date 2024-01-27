@@ -125,6 +125,20 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_jnemn")
 text = "0"
 
+[node name="PunRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PunRow1Label" type="Label" parent="CanvasLayer/VBoxContainer/PunRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_jnemn")
+text = "Pun 1:"
+
+[node name="PunRow1Value" type="Label" parent="CanvasLayer/VBoxContainer/PunRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_jnemn")
+text = "0"
+
 [node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

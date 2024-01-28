@@ -12,7 +12,6 @@ var speed_default = speed
 var player_state = "idle"
 var muzzle_radius = 0
 var controlls_locked = true
-
 var hasActiveItem = false
 
 func _ready():
@@ -38,6 +37,10 @@ func _physics_process(delta):
 
 	play_animation(direction)
 	move_and_slide()
+	
+	if Input.is_action_just_pressed("shoot"):
+		if (owner.owner.singlePlayer):
+			GlobalSignals.emit_signal("shoot")
 
 	for i in get_slide_collision_count():
 		var enemey = get_slide_collision(i).get_collider() as Enemy

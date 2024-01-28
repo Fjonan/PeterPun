@@ -18,7 +18,10 @@ var Pickup = preload("res://scenes/items/pickable.tscn")
 @onready var killed_value = $CanvasLayer/VBoxContainer/TopRow2/TopRow/EnemiesKilledValue
 @onready var game_over_screen = $CanvasLayer/GameOverScreen
 @onready var splash_screen = $CanvasLayer/SplashScreen
+@onready var promt_panel = $CanvasLayer/VBoxContainer/Panel
 @onready var music = $"AudioListener2D/BG Music"
+
+var singlePlayer = false
 
 var active_pun = null
 var current_letter_index: int = 0
@@ -39,7 +42,6 @@ func increase_killcount():
 	killed_value.text = str(enemies_killed)
 
 func player_typed(key_typed: String):
-	print(":",key_typed,":")
 	var prompt
 
 	if active_pun == null:
@@ -135,7 +137,7 @@ func game_over():
 	item_timer.stop()
 	
 	active_pun = null
-	current_letter_index = -1
+	current_letter_index = 0
 	
 	clear_enemies()
 	clear_items()
@@ -194,5 +196,13 @@ func _input(event):
 		
 	if event.is_action_pressed("ui_accept"):
 		start_game()
+		
+	if event.is_action_pressed("restart"):
+		if (game_over): _on_RestartButton_pressed()
+		
+	if Input.is_action_just_pressed("enable_shoot"):
+		singlePlayer = !singlePlayer
+		if (singlePlayer): promt_panel.hide()
+		else: promt_panel.show()
 		
 	

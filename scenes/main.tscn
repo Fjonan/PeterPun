@@ -113,29 +113,33 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="PunRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-script = ExtResource("6_qlddw")
-green = Color(1, 0.588235, 0, 1)
-red = Color(1, 1, 1, 1)
-
-[node name="PunRow1Label" type="Label" parent="CanvasLayer/VBoxContainer/PunRow"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_jnemn")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/PunRow"]
-clip_contents = false
+[node name="Panel" type="Panel" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+script = ExtResource("6_qlddw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/Panel"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 17.0
+offset_top = -15.0
+offset_right = -12.0
+offset_bottom = 139.0
+grow_horizontal = 2
+size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("5_jnemn")
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 27
 bbcode_enabled = true
-text = "I was wondering why the ball was getting bigger. Then it hit me."
+text = "Heard a cheese factory exploded in France. Nothing left but de Brie!"
 fit_content = true
 scroll_active = false
 
 [node name="BottomRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 

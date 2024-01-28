@@ -12,7 +12,7 @@ var Pickup = preload("res://scenes/items/pickable.tscn")
 @onready var bullet_manager = $BulletManager
 @onready var player = $Player
 
-@onready var pun1 = $CanvasLayer/VBoxContainer/PunRow
+@onready var pun1 = $CanvasLayer/VBoxContainer/Panel
 
 @onready var difficulty_value = $CanvasLayer/VBoxContainer/BottomRow/HBoxContainer/DifficultyValue
 @onready var killed_value = $CanvasLayer/VBoxContainer/TopRow2/TopRow/EnemiesKilledValue

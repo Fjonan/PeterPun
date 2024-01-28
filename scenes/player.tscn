@@ -190,7 +190,6 @@ z_index = 2
 z_as_relative = false
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
-position = Vector2(1.4013e-45, 1.4013e-45)
 script = ExtResource("6_0aqdl")
 priority_override = false
 priority = 0
@@ -200,7 +199,7 @@ follow_group = Array[NodePath]([NodePath("../CharacterBody2D/AnimatedSprite2D")]
 follow_parameters/auto_zoom = false
 follow_parameters/target_offset = Vector2(0, 0)
 follow_parameters/damping = true
-follow_parameters/damping_value = 2.0
+follow_parameters/damping_value = 4.0
 frame_preview = true
 pixel_perfect = false
 limit/draw_limits = false

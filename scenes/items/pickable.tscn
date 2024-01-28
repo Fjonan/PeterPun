@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ym8rhrm3pmbs"]
+[gd_scene load_steps=7 format=3 uid="uid://ym8rhrm3pmbs"]
 
 [ext_resource type="Script" path="res://scripts/pickable.gd" id="1_qrcqp"]
 [ext_resource type="Texture2D" uid="uid://cspwkdhjiocue" path="res://assets/tiles/tilesAtlas.png" id="2_i40g1"]
+[ext_resource type="Texture2D" uid="uid://b23xmq10prmts" path="res://assets/light.png" id="3_ju8s4"]
+[ext_resource type="Script" path="res://scripts/pancakelight.gd" id="4_7t3kn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r2n54"]
 atlas = ExtResource("2_i40g1")
@@ -23,4 +25,14 @@ shape = SubResource("CircleShape2D_ncyow")
 wait_time = 5.0
 one_shot = true
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.807843, 0, 0.32549, 1)
+texture = ExtResource("3_ju8s4")
+texture_scale = 0.5
+script = ExtResource("4_7t3kn")
+
+[node name="LightTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LightTimer" to="PointLight2D" method="_on_light_timer_timeout"]

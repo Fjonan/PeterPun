@@ -105,6 +105,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_jnemn")
 text = "0"
 
+[node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
 [node name="PunRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
@@ -115,22 +120,17 @@ red = Color(1, 1, 1, 1)
 [node name="PunRow1Label" type="Label" parent="CanvasLayer/VBoxContainer/PunRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_jnemn")
-text = "Pun 1:"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/PunRow"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("5_jnemn")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "0asdf"
+text = "I was wondering why the ball was getting bigger. Then it hit me."
 fit_content = true
 scroll_active = false
-
-[node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
 
 [node name="BottomRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2

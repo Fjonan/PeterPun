@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmh3ieveab3vu"]
+[gd_scene load_steps=32 format=3 uid="uid://cmh3ieveab3vu"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5x7pt"]
 [ext_resource type="Texture2D" uid="uid://dkmm6l626d61s" path="res://assets/Animations/Characters/heroRight.png" id="2_31skh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b8novdmmov8fo" path="res://scenes/guns/ak.tscn" id="7_8anfs"]
 [ext_resource type="Script" path="res://scripts/weaponManager.gd" id="7_exj02"]
 [ext_resource type="Texture2D" uid="uid://hdexj3njx1d0" path="res://assets/survivalgame-player-green.png" id="9_6o5ct"]
+[ext_resource type="Texture2D" uid="uid://b23xmq10prmts" path="res://assets/light.png" id="9_afm36"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckdks"]
 atlas = ExtResource("2_31skh")
@@ -190,6 +191,7 @@ z_index = 2
 z_as_relative = false
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(1.4013e-45, 1.4013e-45)
 script = ExtResource("6_0aqdl")
 priority_override = false
 priority = 0
@@ -199,7 +201,7 @@ follow_group = Array[NodePath]([NodePath("../CharacterBody2D/AnimatedSprite2D")]
 follow_parameters/auto_zoom = false
 follow_parameters/target_offset = Vector2(0, 0)
 follow_parameters/damping = true
-follow_parameters/damping_value = 4.0
+follow_parameters/damping_value = 2.0
 frame_preview = true
 pixel_perfect = false
 limit/draw_limits = false
@@ -223,6 +225,7 @@ sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
 position = Vector2(-1, 1)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("RectangleShape2D_5t3tj")
@@ -280,6 +283,21 @@ script = ExtResource("7_exj02")
 one_shot = true
 
 [node name="ItemCooldown" type="Timer" parent="CharacterBody2D"]
+
+[node name="LightOccluder2D" type="PointLight2D" parent="CharacterBody2D"]
+position = Vector2(-0.68, -0.68)
+scale = Vector2(0.991431, 0.991431)
+color = Color(1, 1, 1, 0.478431)
+energy = 0.8
+range_z_min = -1500
+range_z_max = 1500
+shadow_enabled = true
+shadow_color = Color(0.156863, 0.156863, 0.156863, 0)
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("9_afm36")
+texture_scale = 4.0
+height = 20.0
 
 [connection signal="timeout" from="CharacterBody2D/WeaponManager/TypingTimer" to="CharacterBody2D" method="_on_typing_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/WeaponManager/TypingTimer" to="CharacterBody2D/WeaponManager" method="_on_typing_timer_timeout"]

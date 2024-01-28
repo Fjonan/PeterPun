@@ -177,6 +177,9 @@ script = ExtResource("11_7i2if")
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("11_ly2xo")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.670588, 0.388235, 0.545098, 1)
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
 [connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]

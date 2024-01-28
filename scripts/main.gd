@@ -149,4 +149,7 @@ func _on_RestartButton_pressed() -> void:
 
 func kill_all():
 	clear_enemies()
-	
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()

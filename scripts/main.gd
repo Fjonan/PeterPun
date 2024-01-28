@@ -56,6 +56,28 @@ func player_typed(key_typed: String):
 		print("successfully typed %s" % key_typed)
 		GlobalSignals.emit_signal("shoot")
 		current_letter_index += 1
+		
+		while prompt.substr(current_letter_index, 1) == "?":
+			current_letter_index += 1
+			
+		while prompt.substr(current_letter_index, 1) == "!":
+			current_letter_index += 1
+			
+		while prompt.substr(current_letter_index, 1) == ".":
+			current_letter_index += 1
+			
+		while prompt.substr(current_letter_index, 1) == ",":
+			current_letter_index += 1
+			
+		while prompt.substr(current_letter_index, 1) == ":":
+			current_letter_index += 1
+			
+		while prompt.substr(current_letter_index, 1) == "-":
+			current_letter_index += 1
+			
+		while prompt.substr(current_letter_index, 1) == " ":
+			current_letter_index += 1
+		
 		active_pun.set_next_character(current_letter_index)
 		if current_letter_index == prompt.length():
 			current_letter_index = -1

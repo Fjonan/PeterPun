@@ -39,8 +39,9 @@ func increase_killcount():
 	killed_value.text = str(enemies_killed)
 
 func player_typed(key_typed: String):
+	print(":",key_typed,":")
 	var prompt
-	
+
 	if active_pun == null:
 		prompt = pun1.get_prompt()
 		active_pun = pun1
@@ -77,7 +78,7 @@ func player_typed(key_typed: String):
 		active_pun.set_next_character(current_letter_index)
 		
 		if current_letter_index == prompt.length():
-			current_letter_index = -1
+			current_letter_index = 0
 			active_pun.init_prompt()
 			active_pun = null
 
@@ -90,8 +91,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
 		GlobalSignals.emit_signal("player_typed")
-
-
+		
 		player_typed(key_typed)
 
 func _on_SpawnTimer_timeout() -> void:
@@ -180,6 +180,7 @@ func start_game():
 	game_over_screen.hide()
 	
 func _on_RestartButton_pressed() -> void:
+	player_typed('') #hack
 	start_game()
 
 func kill_all():

@@ -28,6 +28,7 @@ func _ready() -> void:
 	start_game()
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 	GlobalSignals.connect("killed", Callable(self, "increase_killcount"))
+	GlobalSignals.connect("kill_all_item_colleced", Callable(self, "kill_all"))
 	
 func increase_killcount(): 
 	enemies_killed += 1
@@ -88,7 +89,7 @@ func spawn_items():
 	var spawns = spawn_container.get_children()
 	var index = randi() % spawns.size()
 	pickup.global_position = spawns[index].global_position
-	pickup.type = 'speed'
+	pickup.type = 'puncake'
 	pickup_container.add_child(pickup)
 	
 func _on_item_timer_timeout():
@@ -113,9 +114,17 @@ func game_over():
 	active_pun = null
 	current_letter_index = -1
 	
+	clear_enemies()
+	clear_items()
+	
+func clear_items(): 
+	for items in pickup_container.get_children():
+		items.queue_free()
+
+func clear_enemies(): 
 	for enemy in enemy_container.get_children():
 		enemy.queue_free()
-
+		
 func start_game():
 	randomize()
 		
@@ -135,9 +144,9 @@ func start_game():
 	GlobalSignals.emit_signal("game_started")
 	game_over_screen.hide()
 	
-func get_is_game_started() -> bool:
-	return current_letter_index != -1
-	
 func _on_RestartButton_pressed() -> void:
 	start_game()
 
+func kill_all():
+	clear_enemies()
+	

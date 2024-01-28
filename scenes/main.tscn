@@ -53,6 +53,8 @@ position = Vector2(-1845, -1211)
 wait_time = 3.0
 autostart = true
 
+[node name="ItemTimer" type="Timer" parent="."]
+
 [node name="Player" parent="." instance=ExtResource("2_ac05l")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -172,4 +174,5 @@ script = ExtResource("11_ly2xo")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
+[connection signal="timeout" from="ItemTimer" to="." method="_on_item_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/GameOverScreen/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]

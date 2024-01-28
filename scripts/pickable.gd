@@ -1,20 +1,17 @@
 extends Area2D
 class_name Pickable
 
-@onready var timer = $Cooldown
-var c_player = null
+@export var type: String = ''
 
 func _ready():
 	connect("body_entered", Callable(self, "_on_Pickable_body_entered"))
+	if (type == ''):
+		print('NO TYPE FOR PICKUP SET')
+		return
+
 
 func _on_Pickable_body_entered(body):
 	if body is Player:
-		c_player = body
-		start_boost()
+		GlobalSignals.emit_signal("player_got_pickable", type)
 		queue_free()
-
-func start_boost():
-	c_player.speed = 600
-	await get_tree().create_timer(2.0).timeout
-	c_player.speed = 200
 

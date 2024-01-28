@@ -25,10 +25,6 @@ var enemies_killed: int = 0
 
 func _ready() -> void:
 	start_game()
-
-	var pickup_instance = Pickup.instantiate()
-	pickup_instance.global_position = Vector2(150, 15)
-	pickup_container.add_child(pickup_instance)
 	
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 
@@ -82,6 +78,14 @@ func spawn_enemy():
 	enemy_instance.global_position = spawns[index].global_position
 	enemy_container.add_child(enemy_instance)
 	enemy_instance.set_difficulty(difficulty)
+	
+func spawn_items():
+	var pickup = Pickup.instantiate()
+	var spawns = spawn_container.get_children()
+	var index = randi() % spawns.size()
+	pickup.global_position = spawns[index].global_position
+	pickup.type = 'speed'
+	pickup_container.add_child(pickup)
 
 func _on_DifficultyTimer_timeout() -> void:
 	difficulty += 1
@@ -122,3 +126,6 @@ func get_is_game_started() -> bool:
 	
 func _on_RestartButton_pressed() -> void:
 	start_game()
+
+func _on_item_timer_timeout():
+	pass # Replace with function body.

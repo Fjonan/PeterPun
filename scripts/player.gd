@@ -10,15 +10,15 @@ var speed_default = speed
 @onready var weaponmanager = $WeaponManager
 
 var player_state = "idle"
-var muzzle_radius = 40
-
+var muzzle_radius = 0
 var controlls_locked = true
 
 func _ready():
 	cam.append_follow_group_node(weaponmanager.current_weapon.get_node("Aimdot"))
 	GlobalSignals.connect("game_over", Callable(self, "lock_controlls"))
 	GlobalSignals.connect("game_started", Callable(self, "lock_controlls"))
-	GlobalSignals.connect("camera_shake", Callable(self, "start_slowdown"))
+	GlobalSignals.connect("camera_shake", Callable(self, "start_slowdown")) 
+	GlobalSignals.connect("player_got_pickable", Callable(self, "handle_pickable"))
 	
 func _physics_process(delta):
 	
@@ -74,7 +74,9 @@ func get_input():
 
 func lock_controlls(): 
 	controlls_locked = !controlls_locked
-
+	
+func handle_pickable(type): 
+	print('Player picked up item: ', type)
 
 func start_slowdown():
 	speed = 100

@@ -184,7 +184,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t3tj"]
-size = Vector2(63.3663, 99.0099)
+size = Vector2(45.5446, 91.0891)
 
 [node name="Player" type="Node2D"]
 z_index = 2
@@ -225,8 +225,7 @@ sprite_frames = SubResource("SpriteFrames_cid78")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-visible = false
-position = Vector2(-1, 1)
+position = Vector2(-0.5, 1)
 scale = Vector2(0.505, 0.505)
 shape = SubResource("RectangleShape2D_5t3tj")
 

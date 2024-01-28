@@ -55,9 +55,10 @@ func handle_hit(amount: int):
 	Input.start_joy_vibration(0,1,1,0.1)
 	spawn_particles()
 	
-	if (health == 0): die()
+	if (health == 0): die(true)
 
-func die():
+func die(local: bool = false):
+	if (!local): spawn_particles()
 	GlobalSignals.emit_signal("killed")
 	spawn_splatter()
 	queue_free()

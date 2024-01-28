@@ -1,7 +1,7 @@
 extends Node
 
 var words = [
-	  "Time flies like an arrow. Fruit flies like a banana",
+  "Time flies like an arrow. Fruit flies like a banana",
   "To the guy who invented zero, thanks for nothing",
   "Geology rocks",
   "Need an ark to save two of every animal? I noah guy",
@@ -50,7 +50,7 @@ var words = [
   "Kleptomaniacs always take things literally",
   "difference between a hippo and a zippo? One is heavy, the other is a little lighter",
   "A guys left side was cut off. Hes all right now",
-"I got fired from the calendar factory. All I did was take a day off",
+  "I got fired from the calendar factory. All I did was take a day off",
   "A man survived pepper spray and mustard gas. He is now a seasoned veteran",
   "My dad farted in an elevator. it was wrong on so many levels",
   "What do you call a bee that cant make up its mind? A maybe",
@@ -60,7 +60,6 @@ var words = [
   "How do you throw a space party? You planet",
   "Two fish in a tank, one says: how do you drive this thing?",
 ]
-
 
 func get_prompt() -> String:
 	var word_index = randi() % words.size()

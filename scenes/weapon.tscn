@@ -26,5 +26,5 @@ position = Vector2(275, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Aimdot"]
 z_index = 100
 position = Vector2(-120, 5)
-scale = Vector2(0.145833, 0.145833)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_vrrpb")

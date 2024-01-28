@@ -45,9 +45,6 @@ func _physics_process(delta):
 			GlobalSignals.emit_signal("game_over")
 			break
 	
-	if Input.is_action_just_pressed("shoot"):
-		GlobalSignals.emit_signal("shoot")
-	
 func play_animation(dir):
 	if player_state == "idle":
 		$AnimatedSprite2D.play("idle")

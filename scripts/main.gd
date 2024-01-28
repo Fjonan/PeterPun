@@ -21,7 +21,7 @@ var Pickup = preload("res://scenes/items/pickable.tscn")
 @onready var music = $"AudioListener2D/BG Music"
 
 var active_pun = null
-var current_letter_index: int = -1
+var current_letter_index: int = 0
 
 var difficulty: int = 0
 var enemies_killed: int = 0
@@ -37,20 +37,16 @@ func _ready() -> void:
 func increase_killcount(): 
 	enemies_killed += 1
 	killed_value.text = str(enemies_killed)
-	
-func find_new_prompt(typed_character: String, puns) -> bool:
-	var prompt = puns.get_prompt()
-	var next_character = prompt.substr(0, 1)
-	if next_character == typed_character.to_upper():
-		active_pun = puns
-		current_letter_index = 1
-		active_pun.set_next_character(current_letter_index)
-		return true
-	else:
-		return false
 
 func player_typed(key_typed: String):
-	var prompt = active_pun.get_prompt()
+	var prompt
+	
+	if active_pun == null:
+		prompt = pun1.get_prompt()
+		active_pun = pun1
+	else:
+		prompt = active_pun.get_prompt()
+		
 	var next_character = prompt.substr(current_letter_index, 1)
 	if key_typed.to_upper() == next_character:
 		print("successfully typed %s" % key_typed)
@@ -79,6 +75,7 @@ func player_typed(key_typed: String):
 			current_letter_index += 1
 		
 		active_pun.set_next_character(current_letter_index)
+		
 		if current_letter_index == prompt.length():
 			current_letter_index = -1
 			active_pun.init_prompt()
@@ -90,17 +87,12 @@ func player_typed(key_typed: String):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		if game_is_over == false:
-			start_game()
-		
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
 		GlobalSignals.emit_signal("player_typed")
 
-		if active_pun == null:
-			find_new_prompt(key_typed, pun1)
-		else:
-			player_typed(key_typed)
+
+		player_typed(key_typed)
 
 func _on_SpawnTimer_timeout() -> void:
 	spawn_enemy()
@@ -166,6 +158,7 @@ func start_game():
 	
 	if music.playing == false:
 		music.play()
+		
 	splash_screen.hide()
 	
 	randomize()
@@ -197,3 +190,8 @@ func kill_all():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+		
+	if event.is_action_pressed("ui_accept"):
+		start_game()
+		
+	

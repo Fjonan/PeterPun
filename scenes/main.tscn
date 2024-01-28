@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://blegpfvmy32ik" path="res://assets/SpaceMono-Regular.ttf" id="4_84nw7"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="5_bk7mn"]
 [ext_resource type="FontFile" uid="uid://djm43ruqxrtg4" path="res://assets/Pixeled.ttf" id="5_jnemn"]
-[ext_resource type="Texture2D" uid="uid://ckwypg656i5ju" path="res://assets/splash.png" id="5_oflen"]
+[ext_resource type="Texture2D" uid="uid://df37dxrvlrjjh" path="res://assets/splash.png" id="5_oflen"]
 [ext_resource type="PackedScene" uid="uid://dhom8qei7ccai" path="res://scenes/bullet.tscn" id="6_bimjx"]
 [ext_resource type="Script" path="res://scripts/typeTarget.gd" id="6_qlddw"]
 [ext_resource type="AudioStream" uid="uid://0kp2a3wwsebb" path="res://assets/metal-dark-matter-111451.mp3" id="9_ii4dm"]
@@ -52,7 +52,7 @@ position = Vector2(-1845, -1211)
 wait_time = 0.5
 
 [node name="DifficultyTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
 
 [node name="ItemTimer" type="Timer" parent="."]
@@ -163,11 +163,13 @@ mouse_filter = 2
 [node name="EnemiesKilledLabel4" type="Label" parent="CanvasLayer/VBoxContainer/TopRow2/TopRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_jnemn")
+theme_override_font_sizes/font_size = 50
 text = "Killed:"
 
 [node name="EnemiesKilledValue" type="Label" parent="CanvasLayer/VBoxContainer/TopRow2/TopRow"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_jnemn")
+theme_override_font_sizes/font_size = 50
 text = "0"
 
 [node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
@@ -181,7 +183,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 script = ExtResource("6_qlddw")
-blue = Color(0.929412, 0.65098, 0, 1)
+blue = Color(0.360784, 0.752941, 1, 1)
+green = Color(0.772549, 0.439216, 0.0156863, 1)
 red = Color(1, 1, 1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/Panel"]

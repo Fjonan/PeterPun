@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfkflsawh2gni"]
+[gd_scene load_steps=16 format=3 uid="uid://dfkflsawh2gni"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_een7u"]
 [ext_resource type="PackedScene" uid="uid://cmh3ieveab3vu" path="res://scenes/player.tscn" id="2_ac05l"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://blegpfvmy32ik" path="res://assets/SpaceMono-Regular.ttf" id="4_84nw7"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="5_bk7mn"]
 [ext_resource type="FontFile" uid="uid://djm43ruqxrtg4" path="res://assets/Pixeled.ttf" id="5_jnemn"]
+[ext_resource type="Texture2D" uid="uid://ckwypg656i5ju" path="res://assets/splash.png" id="5_oflen"]
 [ext_resource type="PackedScene" uid="uid://dhom8qei7ccai" path="res://scenes/bullet.tscn" id="6_bimjx"]
 [ext_resource type="Script" path="res://scripts/typeTarget.gd" id="6_qlddw"]
 [ext_resource type="AudioStream" uid="uid://0kp2a3wwsebb" path="res://assets/metal-dark-matter-111451.mp3" id="9_ii4dm"]
@@ -83,6 +84,17 @@ layout_mode = 2
 theme_override_fonts/font = SubResource("3")
 text = "RESTART"
 
+[node name="SplashScreen" type="PanelContainer" parent="CanvasLayer"]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/SplashScreen"]
+position = Vector2(960, 540.5)
+scale = Vector2(1, 0.999074)
+texture = ExtResource("5_oflen")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +129,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
+size_flags_stretch_ratio = 0.2
 script = ExtResource("6_qlddw")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/Panel"]
@@ -126,9 +138,9 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 17.0
-offset_top = -15.0
+offset_top = 7.0
 offset_right = -12.0
-offset_bottom = 139.0
+offset_bottom = 161.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = ExtResource("5_jnemn")
@@ -166,7 +178,7 @@ script = ExtResource("9_j4bfx")
 
 [node name="BG Music" type="AudioStreamPlayer2D" parent="AudioListener2D"]
 stream = ExtResource("9_ii4dm")
-autoplay = true
+max_distance = 2e+08
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

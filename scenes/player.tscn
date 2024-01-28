@@ -280,5 +280,8 @@ script = ExtResource("7_exj02")
 [node name="TypingTimer" type="Timer" parent="CharacterBody2D/WeaponManager"]
 one_shot = true
 
+[node name="ItemCooldown" type="Timer" parent="CharacterBody2D"]
+
 [connection signal="timeout" from="CharacterBody2D/WeaponManager/TypingTimer" to="CharacterBody2D" method="_on_typing_timer_timeout"]
 [connection signal="timeout" from="CharacterBody2D/WeaponManager/TypingTimer" to="CharacterBody2D/WeaponManager" method="_on_typing_timer_timeout"]
+[connection signal="timeout" from="CharacterBody2D/ItemCooldown" to="CharacterBody2D" method="_on_item_cooldown_timeout"]

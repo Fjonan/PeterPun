@@ -56,6 +56,7 @@ func handle_hit(amount: int):
 	GlobalSignals.emit_signal("hit")
 
 	if (health == 0):
+		GlobalSignals.emit_signal("killed")
 		spawn_particles()
 		spawn_splatter()
 		queue_free()

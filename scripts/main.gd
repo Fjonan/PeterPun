@@ -7,6 +7,7 @@ var Pickup = preload("res://scenes/items/pickable.tscn")
 @onready var pickup_container = $PickupContainer
 @onready var spawn_container = $Player/CharacterBody2D/SpawnContainer
 @onready var spawn_timer = $SpawnTimer
+@onready var item_timer = $ItemTimer
 @onready var difficulty_timer = $DifficultyTimer
 @onready var bullet_manager = $BulletManager
 @onready var player = $Player
@@ -25,9 +26,13 @@ var enemies_killed: int = 0
 
 func _ready() -> void:
 	start_game()
-	
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
-
+	GlobalSignals.connect("killed", Callable(self, "increase_killcount"))
+	
+func increase_killcount(): 
+	enemies_killed += 1
+	killed_value.text = str(enemies_killed)
+	
 func find_new_prompt(typed_character: String, puns) -> bool:
 	var prompt = puns.get_prompt()
 	var next_character = prompt.substr(0, 1)
@@ -51,8 +56,7 @@ func player_typed(key_typed: String):
 			current_letter_index = -1
 			active_pun.init_prompt()
 			active_pun = null
-			enemies_killed += 1
-			killed_value.text = str(enemies_killed)
+
 	else:
 		print("incorrectly typed %s instead of %s" % [key_typed, next_character])
 		
@@ -86,6 +90,10 @@ func spawn_items():
 	pickup.global_position = spawns[index].global_position
 	pickup.type = 'speed'
 	pickup_container.add_child(pickup)
+	
+func _on_item_timer_timeout():
+	print('SPAWN ITEM')
+	spawn_items()
 
 func _on_DifficultyTimer_timeout() -> void:
 	difficulty += 1
@@ -100,6 +108,7 @@ func game_over():
 	
 	spawn_timer.stop()
 	difficulty_timer.stop()
+	item_timer.stop()
 	
 	active_pun = null
 	current_letter_index = -1
@@ -108,16 +117,21 @@ func game_over():
 		enemy.queue_free()
 
 func start_game():
+	randomize()
+		
 	pun1.init_prompt()
 
 	difficulty = 0
 	enemies_killed = 0
 	difficulty_value.text = str(0)
 	killed_value.text = str(0)
-	randomize()
+
 	spawn_timer.start()
 	difficulty_timer.start()
+	item_timer.start()
+	
 	spawn_enemy()
+	
 	GlobalSignals.emit_signal("game_started")
 	game_over_screen.hide()
 	
@@ -127,5 +141,3 @@ func get_is_game_started() -> bool:
 func _on_RestartButton_pressed() -> void:
 	start_game()
 
-func _on_item_timer_timeout():
-	pass # Replace with function body.

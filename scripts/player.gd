@@ -13,6 +13,8 @@ var player_state = "idle"
 var muzzle_radius = 0
 var controlls_locked = true
 
+var hasActiveItem = false
+
 func _ready():
 	cam.append_follow_group_node(weaponmanager.current_weapon.get_node("Aimdot"))
 	GlobalSignals.connect("game_over", Callable(self, "lock_controlls"))
@@ -77,11 +79,28 @@ func lock_controlls():
 	
 func handle_pickable(type): 
 	print('Player picked up item: ', type)
+	hasActiveItem = true
+	
+	match type: 
+		'speed':
+			print('speed start')
+			speed = 450
+			await get_tree().create_timer(5).timeout
+			speed = speed_default
+			print('speed end')
+	
+	hasActiveItem = false
 
 func start_slowdown():
+	if (hasActiveItem): return
 	speed = 100
 	print("slow player")
 
 func _on_typing_timer_timeout():
+	if (hasActiveItem): return
 	print("fast player")
 	speed = speed_default
+
+
+func _on_item_cooldown_timeout():
+	pass # Replace with function body.

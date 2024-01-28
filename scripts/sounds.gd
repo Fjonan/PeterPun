@@ -15,7 +15,7 @@ var deathBellAudioInstance = AudioStreamPlayer.new()
 
 func _ready():
 	GlobalSignals.connect("shoot", Callable(self, "play_shot_sound"))
-	GlobalSignals.connect("hit", Callable(self, "play_hit_sound"))
+	GlobalSignals.connect("killed", Callable(self, "play_hit_sound"))
 	GlobalSignals.connect("kill_all_item_colleced", Callable(self, "play_kill_all_sound"))
 	
 	add_child(shotSoundInstance)

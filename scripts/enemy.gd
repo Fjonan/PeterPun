@@ -53,13 +53,14 @@ func play_animation(dir):
 func handle_hit(amount: int):
 	health -= amount
 	Input.start_joy_vibration(0,1,1,0.1)
-	GlobalSignals.emit_signal("hit")
+	spawn_particles()
+	
+	if (health == 0): die()
 
-	if (health == 0):
-		GlobalSignals.emit_signal("killed")
-		spawn_particles()
-		spawn_splatter()
-		queue_free()
+func die():
+	GlobalSignals.emit_signal("killed")
+	spawn_splatter()
+	queue_free()
 
 #TODO: Create impact manager for this if time
 func spawn_particles(): 

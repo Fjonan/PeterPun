@@ -131,8 +131,9 @@ func clear_items():
 		items.queue_free()
 
 func clear_enemies(): 
-	for enemy in enemy_container.get_children():
-		enemy.queue_free()
+	for child in enemy_container.get_children():
+		if child is Enemy:
+			child.queue_free()
 		
 func start_game():
 	if game_running:
@@ -167,7 +168,9 @@ func _on_RestartButton_pressed() -> void:
 	start_game()
 
 func kill_all():
-	clear_enemies()
+	for child in enemy_container.get_children():
+		if child is Enemy:
+			child.die()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

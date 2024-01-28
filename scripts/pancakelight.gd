@@ -1,9 +1,9 @@
 extends PointLight2D
 
+var maxEnergy = 1.5
+var minEnergy = 0.5
+
 func _on_light_timer_timeout():
-	print('Light changed')
-	if (energy == 1):
-		energy = 0.5
-	else:
-		energy = 1
+	if (energy == maxEnergy): energy = minEnergy
+	else: energy = maxEnergy
 

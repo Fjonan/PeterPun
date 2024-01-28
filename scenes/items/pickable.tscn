@@ -28,10 +28,11 @@ one_shot = true
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.807843, 0, 0.32549, 1)
 texture = ExtResource("3_ju8s4")
-texture_scale = 0.5
+texture_scale = 0.25
 script = ExtResource("4_7t3kn")
 
 [node name="LightTimer" type="Timer" parent="."]
+wait_time = 0.2
 autostart = true
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

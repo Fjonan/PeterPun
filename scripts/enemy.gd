@@ -3,7 +3,7 @@ class_name Enemy
 
 var splatter = preload("res://scenes/effects/splatter.tscn")
 
-@export var speed = 40
+@export var speed = 5
 @export var health = 2
 
 @onready var player = get_node("/root/Main/Player/CharacterBody2D")

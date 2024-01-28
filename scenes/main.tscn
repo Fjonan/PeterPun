@@ -49,9 +49,10 @@ position = Vector2(-1845, -1211)
 [node name="PickupContainer" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="DifficultyTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
 
 [node name="ItemTimer" type="Timer" parent="."]
@@ -95,6 +96,55 @@ position = Vector2(960, 540.5)
 scale = Vector2(1, 0.999074)
 texture = ExtResource("5_oflen")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/SplashScreen"]
+layout_mode = 2
+text = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   You're the last dad on earth. Your puns are deadly. 
+   Use them to \"humor\" the enemies.
+
+   Player 1: Tell the jokes by typing the puns on the keyboard
+   Player 2: Use a Gamepad to roam around. Left stick to walk, right to aim.
+   Be careful, you're not good at walking and talking at the same time."
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,6 +181,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 script = ExtResource("6_qlddw")
+blue = Color(0.929412, 0.65098, 0, 1)
+red = Color(1, 1, 1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/Panel"]
 clip_contents = false

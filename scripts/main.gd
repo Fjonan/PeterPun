@@ -17,6 +17,8 @@ var Pickup = preload("res://scenes/items/pickable.tscn")
 @onready var difficulty_value = $CanvasLayer/VBoxContainer/BottomRow/HBoxContainer/DifficultyValue
 @onready var killed_value = $CanvasLayer/VBoxContainer/TopRow2/TopRow/EnemiesKilledValue
 @onready var game_over_screen = $CanvasLayer/GameOverScreen
+@onready var splash_screen = $CanvasLayer/SplashScreen
+@onready var music = $"AudioListener2D/BG Music"
 
 var active_pun = null
 var current_letter_index: int = -1
@@ -24,8 +26,10 @@ var current_letter_index: int = -1
 var difficulty: int = 0
 var enemies_killed: int = 0
 
+var game_running: bool = false
+var game_is_over: bool = false
+
 func _ready() -> void:
-	start_game()
 	GlobalSignals.connect("game_over", Callable(self, "game_over"))
 	GlobalSignals.connect("killed", Callable(self, "increase_killcount"))
 	GlobalSignals.connect("kill_all_item_colleced", Callable(self, "kill_all"))
@@ -64,6 +68,9 @@ func player_typed(key_typed: String):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		if game_is_over == false:
+			start_game()
+		
 		var typed_event = event as InputEventKey
 		var key_typed = PackedByteArray([typed_event.unicode]).get_string_from_utf8()
 		GlobalSignals.emit_signal("player_typed")
@@ -105,6 +112,8 @@ func _on_DifficultyTimer_timeout() -> void:
 	difficulty_value.text = str(difficulty)
 
 func game_over():
+	game_running = false
+	game_is_over = true
 	game_over_screen.show()
 	
 	spawn_timer.stop()
@@ -126,6 +135,16 @@ func clear_enemies():
 		enemy.queue_free()
 		
 func start_game():
+	if game_running:
+		return
+	
+	game_running = true
+	game_is_over = false
+	
+	if music.playing == false:
+		music.play()
+	splash_screen.hide()
+	
 	randomize()
 		
 	pun1.init_prompt()

@@ -49,7 +49,16 @@ var words = [
   "When life gives you melons, you make melonade",
   "Kleptomaniacs always take things literally",
   "difference between a hippo and a zippo? One is heavy, the other is a little lighter",
-  "A guys left side was cut off. Hes all right now"
+  "A guys left side was cut off. Hes all right now",
+"I got fired from the calendar factory. All I did was take a day off",
+  "A man survived pepper spray and mustard gas. He is now a seasoned veteran",
+  "My dad farted in an elevator. it was wrong on so many levels",
+  "What do you call a bee that cant make up its mind? A maybe",
+  "chemists know: alcohol is always a solution",
+  "What did the janitor say when he jumped out of the closet? SUPPLIES!",
+  "There was a kidnapping at school. Dont worry, he woke up",
+  "How do you throw a space party? You planet",
+  "Two fish in a tank, one says: how do you drive this thing?",
 ]
 
 
